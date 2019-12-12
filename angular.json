@@ -24,9 +24,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/lib/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/lib/font-awesome/css/font-awesome.min.css",
+              "src/assets/lib/flag-icon-css/css/flag-icon.css",
+              "src/assets/lib/simple-line-icons/css/simple-line-icons.css",
+              "src/assets/lib/coreui/css/style.css",
+              "src/assets/lib/pace-progress/css/pace.css"
+            
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/lib/jquery/dist/jquery.js",
+              "src/assets/lib/bootstrap/dist/js/bootstrap.bundle.js",
+              "src/assets/lib/pace-progress/js/pace.min.js",
+              "src/assets/lib/perfect-scrollbar/dist/perfect-scrollbar.js",
+              "src/assets/lib/coreui/dist/js/coreui.js",
+              "src/assets/lib/coreui/js/custom-tooltips.js",
+              "src/assets/js/site.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,9 +103,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/lib/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/lib/flag-icon-css/css/flag-icon.min.css",
+              "src/assets/lib/font-awesome/css/font-awesome.min.css",
+              "src/assets/lib/pace-progress/css/pace.css",
+              "src/assets/lib/coreui/site.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/lib/jquery/dist/jquery.js",
+              "src/assets/lib/bootstrap/dist/js/bootstrap.bundle.js",
+              "src/assets/lib/pace-progress/js/pace.min.js",
+              "src/assets/lib/perfect-scrollbar/dist/perfect-scrollbar.js",
+              "src/assets/lib/coreui/dist/js/coreui.js",
+              "src/assets/lib/chart.js/dist/Chart.js",
+              "src/assets/lib/coreui/js/custom-tooltips.js",
+              "src/assets/lib/coreui/js/main.js",
+              "src/assets/js/site.min.js"
+            ]
           }
         },
         "lint": {
