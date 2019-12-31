@@ -1,0 +1,7 @@
+{
+    "/api":{
+        "target":"http://172.17.0.4:6789",
+        "sercure":false,
+        "changeOrigin":true
+    }
+}
