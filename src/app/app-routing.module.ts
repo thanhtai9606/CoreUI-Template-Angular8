@@ -5,6 +5,9 @@ import { DashboardComponent } from './components/views/dashboard/dashboard.compo
 import { BlankComponent } from './components/common/layouts/blank/blank.component';
 import { LoginComponent } from './views/login/login.component';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
+import { CustomerComponent } from './views/customer/customer.component';
+import { SaleComponent } from './views/sale/sale.component';
+import { ProductComponent } from './views/product/product.component';
 
 
 const routes: Routes = [
@@ -12,7 +15,10 @@ const routes: Routes = [
   {
     path: '', component: BasicComponent,
     children: [
-      { path: 'mainView', component: DashboardComponent }
+      { path: 'mainView', component: DashboardComponent },
+      { path: 'customerView', component: CustomerComponent },
+      { path: 'productView', component: ProductComponent },
+      { path: 'saleView', component: SaleComponent }
     ]
   },
   {

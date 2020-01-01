@@ -25,7 +25,7 @@ import { SaleComponent } from './views/sale/sale.component';
     BrowserModule,
     AppRoutingModule,
     LayoutsModule
-  ],
+  ],  
   providers: [],
   bootstrap: [AppComponent]
 })

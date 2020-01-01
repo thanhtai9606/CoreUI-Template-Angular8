@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/services/customer.service';
+import { NgForm } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { Customer } from 'src/app/models/acb-model';
 
 @Component({
   selector: 'app-customer',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor() { }
+  customer: Customer;
+
+  constructor(private customerApi: CustomerService) { }
 
   ngOnInit() {
+  }
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.resetForm();
+      this.customer={
+        CustomerID: null,
+        CustomerName: '',
+        Phone: '',
+        Address: '',
+        ModifiedDate: null
+
+      }
+  }
+  add(){
+    this.customerApi.add(this.customer);
   }
 
 }
