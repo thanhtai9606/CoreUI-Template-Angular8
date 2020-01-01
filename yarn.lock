@@ -921,6 +921,13 @@
     semver "6.3.0"
     semver-intersect "1.4.0"
 
+"@sweetalert2/ngx-sweetalert2@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/ngx-sweetalert2/-/ngx-sweetalert2-7.2.0.tgz#fdf23e95f228bf71e43688670c41e10b4b4ff058"
+  integrity sha512-xx5qZdhAEsfYOwmtoBzJtdL6VLhcAPFFt38SV9WoChBbrlnYWn1GlNz/euLoPbqHDDtF0mZEz/H9sAhWQNtbBA==
+  dependencies:
+    tslib "^1.9.0"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -7240,6 +7247,11 @@ supports-color@^6.1.0:
   integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
   dependencies:
     has-flag "^3.0.0"
+
+sweetalert2@^9.5.4:
+  version "9.5.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.5.4.tgz#fcf9306a70ff9dbe2cb867b3bb7e871d854a2979"
+  integrity sha512-9FSmW9mCbRTHyx6Nbtgeb5348pJYNGaBafn3reKe/Zx/gOBgxsRVHj3GQ4VusU/tuqDobKAIHUdUvNdsU3MXPQ==
 
 symbol-observable@1.2.0:
   version "1.2.0"

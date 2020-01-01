@@ -73,7 +73,16 @@
                                 <td>{{item.address}}</td>
                                 <td>
                                     <button class="btn btn-success"> <i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger "> <i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger " [swal]="
+                                    {
+                                      title: 'Are you sure?',
+                                      text: '_text_!',
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#DD6B55',
+                                      confirmButtonText: 'Yes, delete it!',
+                                      closeOnConfirm: false
+                                    }" (confirm)="delete(item.customerId)"> <i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>                           
                         </tbody>

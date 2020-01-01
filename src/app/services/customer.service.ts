@@ -18,7 +18,7 @@ export class CustomerService {
     return this.http.put(`${ApiUrl}/updateCustomer`, entity);
   }
   delete(id){
-    return this.http.delete(`${ApiUrl}/deleteCustomer`, id)
+    return this.http.delete(`${ApiUrl}/deleteCustomer/${id}`)
   }
 
   getAll(){

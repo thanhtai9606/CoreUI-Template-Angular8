@@ -49,6 +49,10 @@ export class CustomerComponent implements OnInit {
       } else
         this.toastr.error(this.operationResult.Message, this.operationResult.Caption);
     }
+    delete(id:number){
+      console.log(id);
+      this.customerApi.delete(id).subscribe(res=>this.messageRespone(res));
+    }
   refreshGrid(){
     this.customerApi.getAll().subscribe((res)=>this.customers = res);
   }
