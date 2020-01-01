@@ -1,1 +1,87 @@
-<p>customer works!</p>
+<div class="fade-in">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header"><strong>Thông tin khách hàng</strong></div>
+                <div class="card-body">
+                    <form #myForm="ngForm" name="myForm">
+                        <div class="row">
+                            <input type="hidden" class="form-control" [(ngModel)]="customer.CustomerId"
+                                name="CustomerId" #CustomerId="ngModel">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="name">Họ Tên:</label>
+                                    <input class="form-control" id="CustomerName" [(ngModel)]="customer.CustomerName" 
+                                        name="CustomerName"  type="text" placeholder="Enter Customer name"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="ccnumber">Phone Number:</label>
+                                    <input class="form-control" id="Phone" [(ngModel)]="customer.Phone" name="Phone"
+                                        #Phone="ngModel" type="tel" placeholder="000 000 0000" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="ccnumber">Address:</label>
+                                    <input class="form-control" [(ngModel)]="customer.Address" name="Address" type="tel"
+                                        #Address="ngModel" placeholder="Address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" (click)="save()"
+                                           [disabled]="myForm.invalid ">Save</button>
+                                    <button class="btn btn-secondary" (click)="resetForm()"> <i class="fa fa-save"></i>
+                                        Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-7">
+            <div class="card">
+                <div class="card-header"><strong>Danh sách khác hàng</strong></div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th hidden>Id</th>
+                                <th>Họ Tên</th>
+                                <th>Số Điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody *ngFor="let item of customers">
+                            <tr>
+                                <td hidden>{{item.customerId}}</td>
+                                <td>{{item.customerName}}</td>
+                                <td>{{item.phone}}</td>
+                                <td>{{item.address}}</td>
+                                <td>
+                                    <button class="btn btn-success"> <i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger "> <i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

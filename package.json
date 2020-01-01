@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --poll=2000",
+    "start": "ng serve --host 0.0.0.0 --proxy-config proxyconfig.json --poll=2000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.14",
     "chart.js": "^2.9.3",
     "jquery": "^3.4.1",
+    "ngx-toastr": "^11.2.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

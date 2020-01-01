@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,9 @@ import { LoginComponent } from './views/login/login.component';
 import { ProductComponent } from './views/product/product.component';
 import { CustomerComponent } from './views/customer/customer.component';
 import { SaleComponent } from './views/sale/sale.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'node_modules/ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,8 +26,18 @@ import { SaleComponent } from './views/sale/sale.component';
     SaleComponent
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+      closeButton: true
+    }),
     LayoutsModule
   ],  
   providers: [],
