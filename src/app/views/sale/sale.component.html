@@ -78,13 +78,18 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="name">Khách hàng:</label>
-                                <ng-select2 class="form-control"
-                                            [data]="customers"
-                                            [placeholder]="'Demo with options'"
-                                            ></ng-select2>
+                                <!-- <ng-select2 class="form-control" [data]="customers" [placeholder]="'Demo with options'">
+                                </ng-select2> -->
                                 <!-- <input class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
                                     name="CustomerId" #CustomerId="ngModel" type="text" required
                                     placeholder="Enter sale name"> -->
+                                     <select class="form-control" id="CustomerId" 
+                                            [(ngModel)]="sale.CustomerId"
+                                            name="CustomerId" #CustomerId="ngModel" >
+                                        <option *ngFor="let c of customers; let i = index" [value]="c.id">
+                                            {{c.text}}
+                                        </option>
+                                    </select>
                             </div>
                         </div>
                     </div>
@@ -93,14 +98,21 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="name">Sản phẩm:</label>
-                                    <ng-select2 class="form-control"
+                                    <!-- <ng-select2 class="form-control"
                                                 [data]="products"
-                                                [placeholder]="'Demo with options'"
-                                                ></ng-select2>
+                                                [placeholder]="'Demo with options'"></ng-select2> -->
                                     <!-- <input class="form-control" id="ProductName"
                                         [(ngModel)]="saleSubProduct.ProductName" name="ProductName"
                                         #ProductName="ngModel" type="text" placeholder="Enter ProductName name"
                                         required> -->
+                                    <select class="form-control" 
+                                            id="ProductName"
+                                            [(ngModel)]="saleSubProduct.ProductName" name="ProductName"
+                                            #ProductName="ngModel">
+                                        <option *ngFor="let p of products; let i = index" [value]="p.id">
+                                            {{p.text}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">

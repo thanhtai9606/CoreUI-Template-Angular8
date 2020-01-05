@@ -39,10 +39,10 @@ export class SaleComponent implements OnInit {
       width: '300'
     };
     this.saleService.getProducts().subscribe(res=>{
-      this.customers = res as any;
+      this.products = res as any;
     })
     this.saleService.getCustomers().subscribe(res=>{
-      this.products = res as any;
+      this.customers = res as any;
     })
     this.resetForm();
     this.refreshGrid();
@@ -63,10 +63,7 @@ export class SaleComponent implements OnInit {
       Products: []
 
     }
-    this.saleSubProduct={
-      ProductName :'',
-      Quantity:0
-    }
+    this.resetSaleProduct();
     this.isUpdate = false;
     
   }
@@ -79,6 +76,9 @@ export class SaleComponent implements OnInit {
   addSaleProductTable()
   {       
     this.saleProducts.push(this.saleSubProduct);
+    this.resetSaleProduct();
+  }
+  resetSaleProduct(){
     this.saleSubProduct={
       ProductName :'',
       Quantity:0
