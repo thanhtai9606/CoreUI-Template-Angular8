@@ -1,1 +1,128 @@
-<p>sale works!</p>
+<div class="fade-in">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header"><strong>Danh sách khách hàng</strong></div>
+                <div class="card-body">
+                    <button class="btn btn-secondary mb-1" type="button" data-toggle="modal" data-target="#myModal"><i
+                            class="fa fa-plus"></i> Thêm mới</button>
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th hidden>Id</th>
+                                <th>Tên khách hàng</th>
+                                <th>Điện thoại</th>
+                                <th>Sản phẩm</th>
+                                <th>Mẫu mã</th>
+                                <th>Bảo hành</th>
+                                <th>Số lượng</th>
+                                <th>BH Từ</th>
+                                <th>BH Đến</th>
+                                <th>Cập nhật</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody *ngFor="let item of products">
+                            <tr>
+                                <td hidden>{{item.SoId}}</td>
+                                <td>{{item.CustomerName}}</td>
+                                <td>{{item.Phone}}</td>
+                                <td>{{item.ProductName}}</td>
+                                <td>{{item.Model}}</td>
+                                <td>{{item.Warranty}}</td>
+                                <td>{{item.Quantity}}</td>
+                                <td>{{item.WarrantyStart}}</td>
+                                <td>{{item.WarrantyEnd}}</td>
+                                <td>{{item.ModifiedDate}}</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
+                                        (click)="edit(item.ProductId)"> <i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger " [swal]="
+                                    {
+                                      title: 'Are you sure?',
+                                      text: '_text_!',
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#DD6B55',
+                                      confirmButtonText: 'Yes, delete it!',
+                                      closeOnConfirm: false
+                                    }" (confirm)="delete(item.ProductId)"> <i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal Diaglog -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sản phẩm</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #myForm="ngForm" name="myForm">
+                    <div class="row">
+                        <input type="hidden" class="form-control" [(ngModel)]="product.ProductId" name="ProductId"
+                            #ProductId="ngModel">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Tên sản phẩm:</label>
+                                <input class="form-control" id="ProductName" [(ngModel)]="product.ProductName"
+                                    name="ProductName" #ProductName="ngModel" type="text" required
+                                    placeholder="Enter Product name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Mẫu mã:</label>
+                                <input class="form-control" id="Model" [(ngModel)]="product.Model" name="Model"
+                                    #Model="ngModel" type="text" placeholder="Enter Model name" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Tồn kho:</label>
+                                <input class="form-control" id="Inventory" [(ngModel)]="product.Inventory"
+                                    name="Inventory" #Inventory="ngModel" type="number"
+                                    placeholder="Enter Inventory name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Thời gian bảo hành:</label>
+                                <input class="form-control" id="Warranty" [(ngModel)]="product.Warranty" name="Warranty"
+                                    #Warranty="ngModel" type="number" placeholder="Enter Warranty name" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" (click)="resetForm()" type="button"
+                    data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" (click)="save()" [disabled]="myForm.invalid" type="button">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content-->
+    </div>
+    <!-- /.modal-dialog-->
+</div>

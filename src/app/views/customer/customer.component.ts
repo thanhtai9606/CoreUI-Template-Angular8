@@ -13,10 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 export class CustomerComponent implements OnInit {
 
   customer: Customer;
-  customers : Customer[];
+  customers: Customer[];
   operationResult: OperationResult;
+  isUpdate: boolean = false;
 
-  constructor(private customerApi: CustomerService,private toastr: ToastrService) { }
+  constructor(private customerApi: CustomerService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -25,36 +26,47 @@ export class CustomerComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
-      this.customer={
-        CustomerId: null,
-        CustomerName: '',
-        Phone: '',
-        Address: '',
-        ModifiedDate: null
+    this.customer = {
+      CustomerId: 0,
+      CustomerName: '',
+      Phone: '',
+      Address: '',
+      ModifiedDate: ''
 
-      }
-  }
-  save(){
-    console.log(this.customer);
-    this.customerApi.add(this.customer).subscribe(res => this.messageRespone(res));
-  }
-    //Respone Message after execute
-    messageRespone(res: any) {
-      this.operationResult = res as OperationResult;
-      if (this.operationResult.Success) {
-        this.toastr.success(this.operationResult.Message, this.operationResult.Caption);
-        this.resetForm();
-        this.refreshGrid();
-        //$('#btnClose').click();
-      } else
-        this.toastr.error(this.operationResult.Message, this.operationResult.Caption);
     }
-    delete(id:number){
-      console.log(id);
-      this.customerApi.delete(id).subscribe(res=>this.messageRespone(res));
-    }
-  refreshGrid(){
-    this.customerApi.getAll().subscribe((res)=>this.customers = res);
+    this.isUpdate = false;
+  }
+  edit(id) {
+    this.isUpdate = true;
+    this.customer = this.customers.find(s => s.CustomerId == id);
+    //debugger;
+
+  }
+  save() {
+    if (!this.isUpdate)
+      this.customerApi.add(this.customer).subscribe(res => this.messageRespone(res));
+    else
+      this.customerApi.update(this.customer).subscribe(res => this.messageRespone(res));
+  }
+  //Respone Message after execute
+  messageRespone(res: any) {
+    this.operationResult = res as OperationResult;
+    if (this.operationResult.Success) {
+      this.toastr.success(this.operationResult.Message, this.operationResult.Caption);
+      this.resetForm();
+      this.refreshGrid();
+    } else
+      this.toastr.error(this.operationResult.Message, this.operationResult.Caption);
+  }
+  delete(id: number) {
+    console.log(id);
+    this.customerApi.delete(id).subscribe(res => this.messageRespone(res));
+  }
+  refreshGrid() {
+    this.customerApi.getAll().subscribe((res) => {
+      this.customers = res as Customer[]
+      console.log(res)
+    });
   }
 
 }

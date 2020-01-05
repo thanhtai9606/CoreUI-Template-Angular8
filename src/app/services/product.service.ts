@@ -18,7 +18,7 @@ export class ProductService {
     return this.http.put(`${ApiUrl}/updateProduct`, entity);
   }
   delete(id){
-    return this.http.delete(`${ApiUrl}/deleteProduct`, id)
+    return this.http.delete(`${ApiUrl}/deleteProduct/${id}`)
   }
 
   getAll(){

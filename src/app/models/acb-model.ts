@@ -3,7 +3,7 @@ export class Customer {
     CustomerName: string
     Phone: string
     Address: string
-    ModifiedDate: Date
+    ModifiedDate: string
 }
 
 export class Product {
@@ -26,5 +26,5 @@ export class Sale{
     CreateBy: string
 
     Products?: Product[]
-    Customer: Customer
+   
 }

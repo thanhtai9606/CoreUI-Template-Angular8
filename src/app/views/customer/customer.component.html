@@ -3,7 +3,7 @@
         <div class="col-sm-5">
             <div class="card">
                 <div class="card-header"><strong>Thông tin khách hàng</strong></div>
-                <div class="card-body">
+                <div class="card-body">                    
                     <form #myForm="ngForm" name="myForm">
                         <div class="row">
                             <input type="hidden" class="form-control" [(ngModel)]="customer.CustomerId"
@@ -12,7 +12,8 @@
                                 <div class="form-group">
                                     <label for="name">Họ Tên:</label>
                                     <input class="form-control" id="CustomerName" [(ngModel)]="customer.CustomerName" 
-                                        name="CustomerName"  type="text" placeholder="Enter Customer name"
+                                        name="CustomerName" #CustomerName="ngModel" type="text" 
+                                        placeholder="Enter Customer name"
                                         required>
                                 </div>
                             </div>
@@ -30,7 +31,9 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="ccnumber">Address:</label>
-                                    <input class="form-control" [(ngModel)]="customer.Address" name="Address" type="tel"
+                                    <input class="form-control" 
+                                        [(ngModel)]="customer.Address" 
+                                        name="Address" type="tel"
                                         #Address="ngModel" placeholder="Address">
                                 </div>
                             </div>
@@ -67,12 +70,12 @@
 
                         <tbody *ngFor="let item of customers">
                             <tr>
-                                <td hidden>{{item.customerId}}</td>
-                                <td>{{item.customerName}}</td>
-                                <td>{{item.phone}}</td>
-                                <td>{{item.address}}</td>
+                                <td hidden>{{item.CustomerId}}</td>
+                                <td>{{item.CustomerName}}</td>
+                                <td>{{item.Phone}}</td>
+                                <td>{{item.Address}}</td>
                                 <td>
-                                    <button class="btn btn-success"> <i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-success" (click) ="edit(item.CustomerId)"> <i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger " [swal]="
                                     {
                                       title: 'Are you sure?',

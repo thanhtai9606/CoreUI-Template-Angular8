@@ -29,7 +29,8 @@
               "src/assets/lib/flag-icon-css/css/flag-icon.css",
               "src/assets/lib/simple-line-icons/css/simple-line-icons.css",
               "src/assets/lib/coreui/css/style.css",
-              "src/assets/lib/pace-progress/css/pace.css"
+              "src/assets/lib/pace-progress/css/pace.css",
+              "node_modules/select2/dist/css/select2.min.css"
             
             ],
             "scripts": [
@@ -39,7 +40,8 @@
               "src/assets/lib/perfect-scrollbar/dist/perfect-scrollbar.js",
               "src/assets/lib/coreui/dist/js/coreui.js",
               "src/assets/lib/coreui/js/custom-tooltips.js",
-              "src/assets/js/site.min.js"
+              "src/assets/js/site.min.js",
+              "node_modules/select2/dist/js/select2.min.js"
             ]
           },
           "configurations": {
@@ -107,7 +109,8 @@
               "src/assets/lib/flag-icon-css/css/flag-icon.min.css",
               "src/assets/lib/font-awesome/css/font-awesome.min.css",
               "src/assets/lib/pace-progress/css/pace.css",
-              "src/assets/lib/coreui/site.min.css"
+              "src/assets/lib/coreui/site.min.css",
+              "node_modules/select2/dist/css/select2.min.css"
             ],
             "scripts": [
               "src/assets/lib/jquery/dist/jquery.js",
@@ -118,7 +121,7 @@
               "src/assets/lib/chart.js/dist/Chart.js",
               "src/assets/lib/coreui/js/custom-tooltips.js",
               "src/assets/lib/coreui/js/main.js",
-              "src/assets/js/site.min.js"
+              "src/assets/js/site.min.js"             
             ]
           }
         },
