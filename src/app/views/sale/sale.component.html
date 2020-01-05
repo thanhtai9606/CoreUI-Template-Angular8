@@ -10,20 +10,20 @@
                         <thead>
                             <tr>
                                 <th hidden>Id</th>
-                                <th>Tên khách hàng</th>
+                                <th>Khách hàng</th>
                                 <th>Điện thoại</th>
                                 <th>Sản phẩm</th>
                                 <th>Mẫu mã</th>
                                 <th>Bảo hành</th>
                                 <th>Số lượng</th>
-                                <th>BH Từ</th>
-                                <th>BH Đến</th>
+                                <th>BH từ</th>
+                                <th>BH đến</th>
                                 <th>Cập nhật</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
 
-                        <tbody *ngFor="let item of products">
+                        <tbody *ngFor="let item of sales">
                             <tr>
                                 <td hidden>{{item.SoId}}</td>
                                 <td>{{item.CustomerName}}</td>
@@ -37,7 +37,7 @@
                                 <td>{{item.ModifiedDate}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
-                                        (click)="edit(item.ProductId)"> <i class="fa fa-pencil"></i></button>
+                                        (click)="edit(item.SoId)"> <i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger " [swal]="
                                     {
                                       title: 'Are you sure?',
@@ -47,7 +47,7 @@
                                       confirmButtonColor: '#DD6B55',
                                       confirmButtonText: 'Yes, delete it!',
                                       closeOnConfirm: false
-                                    }" (confirm)="delete(item.ProductId)"> <i class="fa fa-trash"></i></button>
+                                    }" (confirm)="delete(item.SoId)"> <i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -63,10 +63,10 @@
 
 <!-- Modal Diaglog -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Sản phẩm</h4>
+                <h4 class="modal-title">Bán hàng</h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -74,52 +74,86 @@
             <div class="modal-body">
                 <form #myForm="ngForm" name="myForm">
                     <div class="row">
-                        <input type="hidden" class="form-control" [(ngModel)]="product.ProductId" name="ProductId"
-                            #ProductId="ngModel">
+                        <input type="hidden" class="form-control" [(ngModel)]="sale.SoId" name="SoId" #SoId="ngModel">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="name">Tên sản phẩm:</label>
-                                <input class="form-control" id="ProductName" [(ngModel)]="product.ProductName"
-                                    name="ProductName" #ProductName="ngModel" type="text" required
-                                    placeholder="Enter Product name">
+                                <label for="name">Khách hàng:</label>
+                                <ng-select2 class="form-control"
+                                            [data]="customers"
+                                            [placeholder]="'Demo with options'"
+                                            ></ng-select2>
+                                <!-- <input class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
+                                    name="CustomerId" #CustomerId="ngModel" type="text" required
+                                    placeholder="Enter sale name"> -->
                             </div>
                         </div>
                     </div>
+                    <form #myForm2="ngForm" name="myForm2">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="name">Sản phẩm:</label>
+                                    <ng-select2 class="form-control"
+                                                [data]="products"
+                                                [placeholder]="'Demo with options'"
+                                                ></ng-select2>
+                                    <!-- <input class="form-control" id="ProductName"
+                                        [(ngModel)]="saleSubProduct.ProductName" name="ProductName"
+                                        #ProductName="ngModel" type="text" placeholder="Enter ProductName name"
+                                        required> -->
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="name">Số lượng:</label>
+                                    <input class="form-control" id="Quantity" [(ngModel)]="saleSubProduct.Quantity"
+                                        name="Quantity" #Quantity="ngModel" type="number"
+                                        placeholder="Enter Quantity name" required>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="name">Action</label>
+                                    <button class="form-control btn btn-info btn-sm" [disabled]="myForm2.invalid"
+                                        type="button" (click)=" addSaleProductTable()">
+                                        Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="name">Mẫu mã:</label>
-                                <input class="form-control" id="Model" [(ngModel)]="product.Model" name="Model"
-                                    #Model="ngModel" type="text" placeholder="Enter Model name" >
+                                <table class="table table-bordered table-striped table-hover">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr *ngFor="let item of saleProducts">
+                                            <td>{{item.ProductName}}</td>
+                                            <td>{{item.Quantity}}</td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm"
+                                                    (click)="removeSaleProduct(item.ProductName)"> Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="name">Tồn kho:</label>
-                                <input class="form-control" id="Inventory" [(ngModel)]="product.Inventory"
-                                    name="Inventory" #Inventory="ngModel" type="number"
-                                    placeholder="Enter Inventory name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="name">Thời gian bảo hành:</label>
-                                <input class="form-control" id="Warranty" [(ngModel)]="product.Warranty" name="Warranty"
-                                    #Warranty="ngModel" type="number" placeholder="Enter Warranty name" required>
-                            </div>
-                        </div>
-                    </div>
+
                 </form>
 
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" (click)="resetForm()" type="button"
                     data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" (click)="save()" [disabled]="myForm.invalid" type="button">Save changes</button>
+                <button class="btn btn-primary" (click)="save()" [disabled]="myForm.invalid" type="button">Save
+                    changes</button>
             </div>
         </div>
         <!-- /.modal-content-->

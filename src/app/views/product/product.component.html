@@ -10,13 +10,10 @@
                         <thead>
                             <tr>
                                 <th hidden>Id</th>
-                                <th>Tên khách hàng</th>
                                 <th>Sản phẩm</th>
                                 <th>Mẫu mã</th>
-                                <th>Số lượng</th>
-                                <th>Ngày mua</th>
-                                <th>Bảo hành từ ngày</th>
-                                <th>Bảo hành đến ngày</th>
+                                <th>Tồn kho</th>
+                                <th>Bảo hành</th>                              
                                 <th>Cập nhật</th>
                                 <th>Actions</th>
                             </tr>
@@ -24,8 +21,8 @@
 
                         <tbody *ngFor="let item of products">
                             <tr>
-                                <td hidden>{{item.SoId}}</td>
-                                <td>{{item.CustomerName}}</td>
+                                <td hidden>{{item.ProductId}}</td>
+                                <td>{{item.ProductName}}</td>
                                 <td>{{item.Model}}</td>
                                 <td>{{item.Inventory}}</td>
                                 <td>{{item.Warranty}}</td>

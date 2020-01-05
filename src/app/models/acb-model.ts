@@ -28,3 +28,14 @@ export class Sale{
     Products?: Product[]
    
 }
+
+export class SaleProduct
+{
+    ProductName: string;
+    Quantity: number;
+}
+
+export class Select2Data{
+    id: string;
+    text: string
+}

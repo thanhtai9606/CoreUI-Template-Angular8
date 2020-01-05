@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Sale, Product } from 'src/app/models/acb-model';
+import { Sale, Product, SaleProduct, Customer } from 'src/app/models/acb-model';
 import { NgForm } from '@angular/forms';
 import { OperationResult } from 'src/app/helpers/operationResult';
 import { SaleService } from 'src/app/services/sale.service';
 import { ToastrService } from 'ngx-toastr';
+import { CustomerService } from 'src/app/services/customer.service';
+import { ProductService } from 'src/app/services/product.service';
+import { Select2OptionData } from 'ng-select2';
+import { Options } from 'select2';
+
 
 @Component({
   selector: 'app-sale',
@@ -12,13 +17,33 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SaleComponent implements OnInit {
   sales: any;
-  sale: Sale
+  sale: Sale;
+  saleSubProduct: SaleProduct;
+  saleProducts: any =[];
   operationResult: OperationResult;
   isUpdate: boolean = false;
+  customers: Array<Select2OptionData>;
+  products: Array<Select2OptionData>;
+  options: Options;
 
-  constructor(private saleService: SaleService, private toastr: ToastrService) { }
+  constructor(private saleService: SaleService, 
+              private customerService: CustomerService,
+              private productService: ProductService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.options = {
+      multiple: true,
+      theme: 'classic',
+      closeOnSelect: false,
+      width: '300'
+    };
+    this.saleService.getProducts().subscribe(res=>{
+      this.customers = res as any;
+    })
+    this.saleService.getCustomers().subscribe(res=>{
+      this.products = res as any;
+    })
     this.resetForm();
     this.refreshGrid();
   }
@@ -35,16 +60,34 @@ export class SaleComponent implements OnInit {
       ModifiedDate: null,
       CreateBy: '',
   
-      Products?: Product[]
+      Products: []
 
     }
+    this.saleSubProduct={
+      ProductName :'',
+      Quantity:0
+    }
     this.isUpdate = false;
+    
   }
   edit(id) {
     this.isUpdate = true;
     //this.sale = this.customers.find(s => s.CustomerId == id);
     //debugger;
 
+  }
+  addSaleProductTable()
+  {       
+    this.saleProducts.push(this.saleSubProduct);
+    this.saleSubProduct={
+      ProductName :'',
+      Quantity:0
+    }
+  }
+  removeSaleProduct(name)
+  {
+   this.saleProducts.splice(this.saleProducts.indexOf(name), 1);
+    
   }
   save() {
     if (!this.isUpdate)
