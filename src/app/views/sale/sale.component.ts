@@ -25,6 +25,9 @@ export class SaleComponent implements OnInit {
   customers: Array<Select2OptionData>;
   products: Array<Select2OptionData>;
   options: Options;
+  ProductId: string;
+
+  customerId : string;
 
   constructor(private saleService: SaleService, 
               private customerService: CustomerService,
@@ -56,7 +59,7 @@ export class SaleComponent implements OnInit {
       TotalLine: 0,  
       CreateBy: '',
   
-      SaleDetails: []
+     // SaleDetails: []
 
     }
     this.resetSaleProduct();
@@ -71,11 +74,13 @@ export class SaleComponent implements OnInit {
   }
   addSaleProductTable()
   {       
+  //  this.saleSubProduct.ProductId = parseInt(this.ProductId);
     this.saleProducts.push(this.saleSubProduct);
     this.resetSaleProduct();
   }
   resetSaleProduct(){
     this.saleSubProduct={
+     // ProductId: 0,
       ProductName :'',
       Quantity:0
     }
@@ -87,10 +92,16 @@ export class SaleComponent implements OnInit {
   }
   save() {
     if (!this.isUpdate)
+    {
+      this.sale.SaleDetails = this.saleProducts;
+      this.sale.CustomerId = parseInt(this.customerId);
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
+    }
+      
     else
       this.saleService.update(this.sale).subscribe(res => this.messageRespone(res));
   }
+
   //Respone Message after execute
   messageRespone(res: any) {
     this.operationResult = res as OperationResult;

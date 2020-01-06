@@ -33,11 +33,12 @@ export class SaleDetail{
 }
 export class SaleProduct
 {
+    //ProductId: number;
     ProductName: string;
     Quantity: number;
 }
 
 export class Select2Data{
-    id: string;
+    id: number;
     text: string
 }

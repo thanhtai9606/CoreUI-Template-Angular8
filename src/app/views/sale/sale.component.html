@@ -75,9 +75,9 @@
                                 <!-- <input class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
                                     name="CustomerId" #CustomerId="ngModel" type="text" required
                                     placeholder="Enter sale name"> -->
-                                     <select class="form-control" id="CustomerId" 
-                                            [(ngModel)]="sale.CustomerId"
-                                            name="CustomerId" #CustomerId="ngModel" >
+                                     <select class="form-control" id="customerId"
+                                            [(ngModel)]="customerId"
+                                            name="customerId" #CustomerId="ngModel" >
                                         <option *ngFor="let c of customers; let i = index" [value]="c.id">
                                             {{c.text}}
                                         </option>
@@ -99,8 +99,8 @@
                                         required> -->
                                     <select class="form-control" 
                                             id="ProductName"
-                                            [(ngModel)]="saleSubProduct.ProductName" name="ProductName"
-                                            #ProductName="ngModel">
+                                            [(ngModel)]="saleSubProduct.ProductId" name="ProductId"
+                                            #ProductId="ngModel">
                                         <option *ngFor="let p of products; let i = index" [value]="p.id">
                                             {{p.text}}
                                         </option>
@@ -131,13 +131,15 @@
                             <div class="form-group">
                                 <table class="table table-bordered table-striped table-hover">
                                     <tr>
+                                        <th hidden>Id</th>
                                         <th>Sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Action</th>
                                     </tr>
                                     <tbody>
                                         <tr *ngFor="let item of saleProducts">
-                                            <td>{{item.ProductName}}</td>
+                                            <td hidden>{{item.ProductName}}</td>
+                                            <td>{{item.ProductId}}</td>
                                             <td>{{item.Quantity}}</td>
                                             <td>
                                                 <button class="btn btn-danger btn-sm"

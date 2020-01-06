@@ -12,6 +12,7 @@ export class SaleService {
   constructor(private http: HttpClient) { }
 
   add(entity){
+    console.log(entity);
     return this.http.post(`${ApiUrl}/addSale`, entity);
   }
   update(entity){
@@ -30,7 +31,7 @@ export class SaleService {
   }
 
   getSaleById(id){
-    return this.http.get(`${ApiUrl}/getSaleById`,id)
+    return this.http.get(`${ApiUrl}/getSaleById?soId=${id}`)
   }
 
   getProducts(){
