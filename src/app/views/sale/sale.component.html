@@ -9,15 +9,10 @@
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th hidden>Id</th>
+                                <th >Id</th>
                                 <th>Khách hàng</th>
-                                <th>Điện thoại</th>
-                                <th>Sản phẩm</th>
-                                <th>Mẫu mã</th>
-                                <th>Bảo hành</th>
-                                <th>Số lượng</th>
-                                <th>BH từ</th>
-                                <th>BH đến</th>
+                                <th>Điện thoại</th>  
+                                <th>Tong so</th>                                
                                 <th>Cập nhật</th>
                                 <th>Actions</th>
                             </tr>
@@ -25,15 +20,10 @@
 
                         <tbody *ngFor="let item of sales">
                             <tr>
-                                <td hidden>{{item.SoId}}</td>
+                                <td >{{item.SoId}}</td>
                                 <td>{{item.CustomerName}}</td>
-                                <td>{{item.Phone}}</td>
-                                <td>{{item.ProductName}}</td>
-                                <td>{{item.Model}}</td>
-                                <td>{{item.Warranty}}</td>
-                                <td>{{item.Quantity}}</td>
-                                <td>{{item.WarrantyStart}}</td>
-                                <td>{{item.WarrantyEnd}}</td>
+                                <td>{{item.Phone}}</td>  
+                                <td>{{item.TotalLine}}</td>                              
                                 <td>{{item.ModifiedDate}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"

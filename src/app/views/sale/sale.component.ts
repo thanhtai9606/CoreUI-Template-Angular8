@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sale, Product, SaleProduct, Customer } from 'src/app/models/acb-model';
+import { SaleHeader, Product, SaleProduct, Customer } from 'src/app/models/acb-model';
 import { NgForm } from '@angular/forms';
 import { OperationResult } from 'src/app/helpers/operationResult';
 import { SaleService } from 'src/app/services/sale.service';
@@ -17,7 +17,7 @@ import { Options } from 'select2';
 })
 export class SaleComponent implements OnInit {
   sales: any;
-  sale: Sale;
+  sale: SaleHeader;
   saleSubProduct: SaleProduct;
   saleProducts: any =[];
   operationResult: OperationResult;
@@ -53,14 +53,11 @@ export class SaleComponent implements OnInit {
     this.sale = {
       SoId: 0,
       CustomerId: 0,
-      ProductId: 0,
-      WarrantyStart: null,
-      WarrantyEnd: null,
-      Quantity: 0,
       ModifiedDate: null,
+      TotalLine: 0,  
       CreateBy: '',
   
-      Products: []
+      SaleDetails: []
 
     }
     this.resetSaleProduct();

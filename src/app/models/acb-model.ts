@@ -15,20 +15,25 @@ export class Product {
     ModifiedDate: Date
 }
 
-export class Sale{
+export class SaleHeader{
     SoId: number
     CustomerId: number
-    ProductId: number
-    WarrantyStart: Date
-    WarrantyEnd: Date
-    Quantity: number
+    TotalLine: number   
     ModifiedDate: Date
     CreateBy: string
 
-    Products?: Product[]
+    SaleDetails?: SaleDetail[]
    
 }
-
+export class SaleDetail{
+    Id: number;
+    SoId: number;
+    ProductId: number;
+    Quantity: number;
+    TotalAmount? :number;
+    WarrantyStart: Date
+    WarrantyEnd: Date
+}
 export class SaleProduct
 {
     ProductName: string;

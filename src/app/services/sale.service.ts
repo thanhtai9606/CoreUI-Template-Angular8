@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Sale, Select2Data } from '../models/acb-model';
+import { SaleHeader, Select2Data } from '../models/acb-model';
 
 const ApiUrl = "api/Sale";
 @Injectable({
@@ -22,11 +22,11 @@ export class SaleService {
   }
 
   getAll(){
-    return this.http.get<Sale[]>(`${ApiUrl}/getSale`)
+    return this.http.get<SaleHeader[]>(`${ApiUrl}/getSale`)
   }
 
   findById(id){
-    return this.http.get<Sale>(`${ApiUrl}/findSale`,id)
+    return this.http.get<SaleHeader>(`${ApiUrl}/findSale`,id)
   }
 
   getProducts(){
