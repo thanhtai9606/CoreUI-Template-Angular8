@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
+import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgSelect2Module } from 'ng-select2';
     LoginComponent,
     ProductComponent,
     CustomerComponent,
-    SaleComponent
+    SaleComponent,
+    SaleDetailComponent
   ],
   imports: [
     HttpClientModule,

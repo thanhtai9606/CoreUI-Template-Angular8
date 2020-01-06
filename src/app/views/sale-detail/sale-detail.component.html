@@ -1,0 +1,53 @@
+<div class="fade-in">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header"><strong>Danh sách khách hàng</strong></div>
+                <div class="card-body">                   
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>                          
+                            <tr>
+                                <th hidden>Id</th>
+                                <th>SoId</th>
+                                <th>ProductName</th>
+                                <th>TotalAmount</th>
+                                <th>Warranty</th>
+                                <th>WarrantyStart</th>
+                                <th>WarrantyEnd</th>                               
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody *ngFor="let item of sales">
+                            <tr>
+                                <td hidden>{{item.SoId}}</td>
+                                <td>{{item.SoId}}</td>
+                                <td>{{item.ProductName}}</td>
+                                <td>{{item.TotalAmount}}</td>
+                                <td>{{item.Warranty}}</td>
+                                <td>{{item.WarrantyStart}}</td>
+                                <td>{{item.WarrantyEnd}}</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
+                                        (click)="edit(item.SoId)"> <i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger " [swal]="
+                                    {
+                                      title: 'Are you sure?',
+                                      text: '_text_!',
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#DD6B55',
+                                      confirmButtonText: 'Yes, delete it!',
+                                      closeOnConfirm: false
+                                    }" (confirm)="delete(item.SoId)"> <i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

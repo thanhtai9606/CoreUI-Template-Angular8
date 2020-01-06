@@ -21,7 +21,9 @@
                         <tbody *ngFor="let item of sales">
                             <tr>
                                 <td >{{item.SoId}}</td>
-                                <td>{{item.CustomerName}}</td>
+                                <td>
+                                    <a [routerLink]="['/saleDetailView',item.SoId]">{{item.CustomerName}}</a>
+                                </td>
                                 <td>{{item.Phone}}</td>  
                                 <td>{{item.TotalLine}}</td>                              
                                 <td>{{item.ModifiedDate}}</td>

@@ -29,6 +29,10 @@ export class SaleService {
     return this.http.get<SaleHeader>(`${ApiUrl}/findSale`,id)
   }
 
+  getSaleById(id){
+    return this.http.get(`${ApiUrl}/getSaleById`,id)
+  }
+
   getProducts(){
     return this.http.get<Select2Data>(`${ApiUrl}/getProducts`)
   }
