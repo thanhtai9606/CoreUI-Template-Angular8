@@ -29,8 +29,7 @@ export class ProductComponent implements OnInit {
       ProductName: '',
       Inventory: 0,
       Model:'',
-      Warranty: 0,
-      ModifiedDate: null
+      Warranty: 0
 
     }
     this.isUpdate = false;

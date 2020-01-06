@@ -18,9 +18,11 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   add(entity){
+    console.log(entity);
     return this.http.post(`${ApiUrl}/addCustomer`, entity);
   }
   update(entity){
+    console.log(entity);
     return this.http.put(`${ApiUrl}/updateCustomer`, entity);
   }
   delete(id){

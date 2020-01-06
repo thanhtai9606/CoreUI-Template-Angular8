@@ -30,16 +30,14 @@ export class CustomerComponent implements OnInit {
       CustomerId: 0,
       CustomerName: '',
       Phone: '',
-      Address: '',
-      ModifiedDate: ''
-
+      Address: ''
     }
     this.isUpdate = false;
   }
   edit(id) {
     this.isUpdate = true;
     this.customer = this.customers.find(s => s.CustomerId == id);
-    //debugger;
+    console.log(this.customer);
 
   }
   save() {
@@ -64,8 +62,7 @@ export class CustomerComponent implements OnInit {
   }
   refreshGrid() {
     this.customerApi.getAll().subscribe((res) => {
-      this.customers = res as Customer[]
-      console.log(res)
+      this.customers = res as Customer[];
     });
   }
 

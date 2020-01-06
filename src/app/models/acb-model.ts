@@ -3,7 +3,6 @@ export class Customer {
     CustomerName: string
     Phone: string
     Address: string
-    ModifiedDate: string
 }
 
 export class Product {
@@ -12,14 +11,12 @@ export class Product {
     Model: string
     Inventory: number
     Warranty: number
-    ModifiedDate: Date
 }
 
 export class SaleHeader{
     SoId: number
     CustomerId: number
-    TotalLine: number   
-    ModifiedDate: Date
+    TotalLine: number 
     CreateBy: string
 
     SaleDetails?: SaleDetail[]

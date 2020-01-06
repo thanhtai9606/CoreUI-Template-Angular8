@@ -53,7 +53,6 @@ export class SaleComponent implements OnInit {
     this.sale = {
       SoId: 0,
       CustomerId: 0,
-      ModifiedDate: null,
       TotalLine: 0,  
       CreateBy: '',
   
