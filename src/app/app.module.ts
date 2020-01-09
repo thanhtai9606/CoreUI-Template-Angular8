@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +46,12 @@ import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
     SweetAlert2Module.forRoot(),
     LayoutsModule
   ],  
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'de-DE' // 'de-DE' for Germany, 'fr-FR' for France ...
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

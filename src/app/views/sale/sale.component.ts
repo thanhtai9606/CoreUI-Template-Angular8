@@ -25,10 +25,9 @@ export class SaleComponent implements OnInit {
   customers: Array<Select2OptionData>;
   products: Array<Select2OptionData>;
   options: Options;
-  ProductId: string;
+  totalLine : number = 0;
 
-  customerId : string;
-
+  
   constructor(private saleService: SaleService, 
               private customerService: CustomerService,
               private productService: ProductService,
@@ -74,15 +73,22 @@ export class SaleComponent implements OnInit {
   }
   addSaleProductTable()
   {       
-  //  this.saleSubProduct.ProductId = parseInt(this.ProductId);
+    this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;//+ this.saleSubProduct.ProductId;
+    this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
+    this.saleSubProduct.ProductName = this.saleSubProduct.ProductName; 
     this.saleProducts.push(this.saleSubProduct);
     this.resetSaleProduct();
   }
+  getProduct(product){
+    console.log(product);
+  }
   resetSaleProduct(){
     this.saleSubProduct={
-     // ProductId: 0,
+     ProductId: 0,
       ProductName :'',
-      Quantity:0
+      Quantity: 0,
+      Price: 0,
+      TotalAmount: 0
     }
   }
   removeSaleProduct(name)
@@ -94,7 +100,7 @@ export class SaleComponent implements OnInit {
     if (!this.isUpdate)
     {
       this.sale.SaleDetails = this.saleProducts;
-      this.sale.CustomerId = parseInt(this.customerId);
+      this.sale.CustomerId = + this.sale.CustomerId;
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
     }
       

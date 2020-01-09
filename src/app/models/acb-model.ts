@@ -27,15 +27,18 @@ export class SaleDetail{
     SoId: number;
     ProductId: number;
     Quantity: number;
+    Price: number;
     TotalAmount? :number;
     WarrantyStart: Date
     WarrantyEnd: Date
 }
 export class SaleProduct
 {
-    //ProductId: number;
+    ProductId: number;
     ProductName: string;
     Quantity: number;
+    Price: number;
+    TotalAmount: number;
 }
 
 export class Select2Data{
