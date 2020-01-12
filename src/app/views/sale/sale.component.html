@@ -77,8 +77,8 @@
                                     placeholder="Enter sale name"> -->
                                 <select class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
                                     name="CustomerId" #CustomerId="ngModel">
-                                    <option *ngFor="let c of customers; let i = index" [value]="c.id">
-                                        {{c.text}}
+                                    <option *ngFor="let c of customers; let i = index" [value]="c.CustomerId">
+                                        {{c.CustomerName}}
                                     </option>
                                 </select>
                             </div>
@@ -96,10 +96,11 @@
                                         [(ngModel)]="saleSubProduct.ProductName" name="ProductName"
                                         #ProductName="ngModel" type="text" placeholder="Enter ProductName name"
                                         required> -->
-                                    <select class="form-control" (change)="getProduct($event.target.value)" id="ProductId" [(ngModel)]="saleSubProduct.ProductId"
+                                    <select class="form-control" id="ProductId" [(ngModel)]="saleSubProduct.ProductId"
+                                        (ngModelChange)="onSelectedChanged()"
                                         name="ProductId" #ProductId="ngModel">
-                                        <option *ngFor="let p of products; let i = index" [value]="p">
-                                            {{p.text}}
+                                        <option *ngFor="let p of products; let i = index" [value]="p.ProductId">
+                                            {{p.ProductName}}
                                         </option>
                                     </select>
                                 </div>
@@ -109,6 +110,7 @@
                                     <label for="name">Số lượng:</label>
                                     <input class="form-control" id="Quantity" [(ngModel)]="saleSubProduct.Quantity"
                                         name="Quantity" #Quantity="ngModel" type="number"
+                                        value="1"
                                         placeholder="Enter Quantity name" required>
                                 </div>
                             </div>
@@ -117,7 +119,7 @@
                             <div class="col-sm-6">
                                 <label for="name">Giá bán:</label>
                                 <input class="form-control" id="Price" [(ngModel)]="saleSubProduct.Price"
-                                    name="Price" #Price="ngModel" type="number" value="10,000"
+                                    name="Price" #Price="ngModel" type="number" value="1"
                                     required>
                             </div>
                             <div class="col-sm-2">
@@ -135,7 +137,7 @@
                             <div class="form-group">
                                 <table class="table table-bordered table-striped table-hover">
                                     <tr>
-                                        <th hidden>Id</th>
+                                        <th >Id</th>
                                         <th>Sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Giá bán</th>
@@ -144,14 +146,14 @@
                                     </tr>
                                     <tbody>
                                         <tr *ngFor="let item of saleProducts; let i = index">
-                                            <td hidden>{{item.ProductName}}</td>
-                                            <td>{{item.ProductId}}</td>
+                                            <td >{{item.ProductId}}</td>
+                                            <td>{{item.ProductName}}</td>
                                             <td>{{item.Quantity}}</td>                                            
                                             <td>{{item.Price }}$</td>                                            
                                             <td>{{item.TotalAmount}}$</td>
                                             <td>
                                                 <button class="btn btn-danger btn-sm"
-                                                    (click)="removeSaleProduct(item.ProductName)"> Delete</button>
+                                                    (click)="removeSaleProduct(item.ProductId)"> Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>

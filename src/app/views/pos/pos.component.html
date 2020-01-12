@@ -1,0 +1,102 @@
+<div class="fade-in">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">Giỏ hàng </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <select class="form-control" id="ProductId" [(ngModel)]="saleSubProduct.ProductId"
+                            (ngModelChange)="onSelectedChanged()" name="ProductId" #ProductId="ngModel">
+                            <option *ngFor="let p of products; let i = index" [value]="p.ProductId">
+                                {{p.ProductName}}
+                            </option>
+                        </select>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Giá bán</th>
+                            <th>Thành tiền</th>
+                            <th>Action</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let item of saleProducts; let i = index">
+                                <td>{{item.ProductId}}</td>
+                                <td>{{item.ProductName}}</td>
+                                <td>{{item.Quantity}}</td>
+                                <td>{{item.Price }}$</td>
+                                <td>{{item.TotalAmount}}$</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" (click)="removeSaleProduct(item.ProductId)">
+                                        Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <form #myForm2="ngForm" name="myForm2">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="name">Khách hàng:</label>
+                                <select class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
+                                    name="CustomerId" #CustomerId="ngModel">
+                                    <option *ngFor="let c of customers; let i = index" [value]="c.CustomerId">
+                                        {{c.CustomerName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="name">Số lượng:</label>
+                                    <input class="form-control" id="Quantity" [(ngModel)]="saleSubProduct.Quantity"
+                                        name="Quantity" #Quantity="ngModel" type="number" value="1"
+                                        placeholder="Enter Quantity name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="name">Giá bán:</label>
+                                <input class="form-control" id="Price" [(ngModel)]="saleSubProduct.Price" name="Price"
+                                    #Price="ngModel" type="number" value="1" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="name">Action:</label>
+                                <button class="form-control btn btn-info"
+                                    [disabled]="myForm2.invalid && saleSubProduct.ProductId != 0" type="button"
+                                    (click)=" addSaleProductTable()">
+                                    Thêm</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="name">Thành tiền:</label>
+                                <h3>{{totalLine}}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <br>
+                                    <button class="form-control btn btn-success" type="button" (click)=" save()">
+                                        Thanh toán</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

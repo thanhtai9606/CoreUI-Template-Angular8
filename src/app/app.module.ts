@@ -17,6 +17,7 @@ import { ToastrModule } from 'node_modules/ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
+import { POSComponent } from './views/pos/pos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
     ProductComponent,
     CustomerComponent,
     SaleComponent,
-    SaleDetailComponent
+    SaleDetailComponent,
+    POSComponent
   ],
   imports: [
     HttpClientModule,

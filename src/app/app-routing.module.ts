@@ -9,6 +9,7 @@ import { CustomerComponent } from './views/customer/customer.component';
 import { SaleComponent } from './views/sale/sale.component';
 import { ProductComponent } from './views/product/product.component';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
+import { POSComponent } from './views/pos/pos.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'customerView', component: CustomerComponent },
       { path: 'productView', component: ProductComponent },
       { path: 'saleView', component: SaleComponent },
-      { path: 'saleDetailView/:id', component: SaleDetailComponent }
+      { path: 'saleDetailView/:id', component: SaleDetailComponent },
+      { path: 'posView', component: POSComponent }
     ]
   },
   {

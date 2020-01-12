@@ -19,7 +19,7 @@ export class SaleService {
     return this.http.put(`${ApiUrl}/updateSale`, entity);
   }
   delete(id){
-    return this.http.delete(`${ApiUrl}/deleteSale`, id)
+    return this.http.delete(`${ApiUrl}/deleteSale/${id}`)
   }
 
   getAll(){

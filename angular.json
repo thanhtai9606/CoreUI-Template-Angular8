@@ -30,6 +30,7 @@
               "src/assets/lib/simple-line-icons/css/simple-line-icons.css",
               "src/assets/lib/coreui/css/style.css",
               "src/assets/lib/pace-progress/css/pace.css",
+              "node_modules/ngx-toastr/toastr.css",
               "node_modules/select2/dist/css/select2.min.css"
             
             ],
