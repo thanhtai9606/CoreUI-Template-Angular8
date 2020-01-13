@@ -78,7 +78,14 @@ export class POSComponent implements OnInit {
   {       
     this.totalLine =0;
     this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;
+    
     this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
+    // let currentSubProduct =  this.saleProducts.find(p=>p.ProductId == this.saleSubProduct.ProductId);
+    // console.log(currentSubProduct);
+    // if( currentSubProduct >0)
+    // {
+    //   this.saleSubProduct.Quantity += currentSubProduct.Quantity
+    // }
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
     this.saleSubProduct.ProductName = this.productItem.ProductName; 
     this.saleProducts.push(this.saleSubProduct);

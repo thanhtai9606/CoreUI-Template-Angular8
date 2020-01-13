@@ -27,7 +27,7 @@ export class SaleService {
   }
 
   findById(id){
-    return this.http.get<SaleHeader>(`${ApiUrl}/findSale`,id)
+    return this.http.get<SaleHeader>(`${ApiUrl}/getSaleHeaderById?soId=${id}`);
   }
 
   getSaleById(id){

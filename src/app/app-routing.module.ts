@@ -10,6 +10,7 @@ import { SaleComponent } from './views/sale/sale.component';
 import { ProductComponent } from './views/product/product.component';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
+import { SaleReportComponent } from './views/sale-report/sale-report.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
       { path: 'customerView', component: CustomerComponent },
       { path: 'productView', component: ProductComponent },
       { path: 'saleView', component: SaleComponent },
-      { path: 'saleDetailView/:id', component: SaleDetailComponent },
+      { path: 'saleDetailView/:id', component: SaleDetailComponent },    
       { path: 'posView', component: POSComponent }
     ]
   },
@@ -29,7 +30,8 @@ const routes: Routes = [
     path: '', component: BlankComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: '404', component: NotFoundComponent }
+      { path: '404', component: NotFoundComponent },
+      { path: 'saleReportView/:id', component: SaleReportComponent }
     ]
   },
 // Handle all other routes

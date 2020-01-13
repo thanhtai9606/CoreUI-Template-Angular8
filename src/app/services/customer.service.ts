@@ -34,6 +34,6 @@ export class CustomerService {
   }
 
   findById(id){
-    return this.http.get<Customer>(`${ApiUrl}/findCustomer`,id)
+    return this.http.get<Customer>(`${ApiUrl}/GetCustomerById?id=${id}`)
   }
 }

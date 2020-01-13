@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
+import { SaleReportComponent } from './views/sale-report/sale-report.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { POSComponent } from './views/pos/pos.component';
     CustomerComponent,
     SaleComponent,
     SaleDetailComponent,
-    POSComponent
+    POSComponent,
+    SaleReportComponent
   ],
   imports: [
     HttpClientModule,
