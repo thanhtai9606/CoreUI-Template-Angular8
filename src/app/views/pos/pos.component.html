@@ -79,9 +79,28 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="name">Chiết khấu %:</label>
+                                    <input class="form-control" id="Discount" (change)="onChangeValues()" 
+                                    [(ngModel)]="sale.Discount"
+                                        name="Discount" #Discount="ngModel" type="number" value="0.0" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="name">Thuế %:</label>
+                                    <input class="form-control" id="Tax" [(ngModel)]="sale.Tax" (change)="onChangeValues()"
+                                        name="Tax" #Tax="ngModel" type="number" value="0.0" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-12">
                                 <label for="name">Thành tiền:</label>
-                                <h3>{{totalLine}}</h3>
+                                <h3>{{sale.TotalLine}}</h3>
                             </div>
                         </div>
                         <div class="row">

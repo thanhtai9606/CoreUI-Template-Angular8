@@ -16,6 +16,9 @@ export class Product {
 export class SaleHeader{
     SoId: number
     CustomerId: number
+    SubTotal: number;
+    Tax: number;
+    Discount: number;
     TotalLine: number 
     CreateBy: string
 

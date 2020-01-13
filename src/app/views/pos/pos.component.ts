@@ -19,20 +19,20 @@ export class POSComponent implements OnInit {
   sales: any;
   sale: SaleHeader;
   saleSubProduct: SaleProduct;
-  saleProducts: any =[];
+  saleProducts: any = [];
   operationResult: OperationResult;
   isUpdate: boolean = false;
   customers: Customer[];//Array<Select2OptionData>;
   products: Product[]; //Array<Select2OptionData>;
   options: Options;
-  totalLine : number = 0;
+  subTotal: number = 0;
   productItem?: Product;
-  
-  constructor(private saleService: SaleService, 
-              private customerService: CustomerService,
-              private productService: ProductService,
-              private router: Router,
-              private toastr: ToastrService) { }
+
+  constructor(private saleService: SaleService,
+    private customerService: CustomerService,
+    private productService: ProductService,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.options = {
@@ -41,10 +41,10 @@ export class POSComponent implements OnInit {
       closeOnSelect: false,
       width: '300'
     };
-    this.saleService.getProducts().subscribe(res=>{
+    this.saleService.getProducts().subscribe(res => {
       this.products = res as any;
     })
-    this.saleService.getCustomers().subscribe(res=>{
+    this.saleService.getCustomers().subscribe(res => {
       this.customers = res as any;
     })
     this.resetForm();
@@ -55,15 +55,18 @@ export class POSComponent implements OnInit {
     this.sale = {
       SoId: 0,
       CustomerId: 0,
-      TotalLine: 0,  
+      Tax: 0.0,
+      Discount: 0.0,
+      SubTotal: 0,
+      TotalLine: 0,
       CreateBy: '',
-  
-     // SaleDetails: []
+
+      // SaleDetails: []
 
     }
     this.resetSaleProduct();
     this.isUpdate = false;
-    
+
   }
   edit(id) {
     this.isUpdate = true;
@@ -71,14 +74,13 @@ export class POSComponent implements OnInit {
     //debugger;
 
   }
-  onSelectedChanged(){
-   this.productItem = this.products.find(p=>p.ProductId == this.saleSubProduct.ProductId);
+  onSelectedChanged() {
+    this.productItem = this.products.find(p => p.ProductId == this.saleSubProduct.ProductId);
   }
-  addSaleProductTable()
-  {       
-    this.totalLine =0;
+  addSaleProductTable() {
+    this.subTotal = 0;
     this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;
-    
+
     this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
     // let currentSubProduct =  this.saleProducts.find(p=>p.ProductId == this.saleSubProduct.ProductId);
     // console.log(currentSubProduct);
@@ -87,35 +89,47 @@ export class POSComponent implements OnInit {
     //   this.saleSubProduct.Quantity += currentSubProduct.Quantity
     // }
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
-    this.saleSubProduct.ProductName = this.productItem.ProductName; 
+    this.saleSubProduct.ProductName = this.productItem.ProductName;
     this.saleProducts.push(this.saleSubProduct);
     this.saleProducts.forEach(product => {
-      this.totalLine += product.TotalAmount;
+      this.subTotal += product.TotalAmount;
     });
     this.resetSaleProduct();
   }
-  resetSaleProduct(){
-    this.saleSubProduct={
+  removeItemInProduct() {
+    let item = this.products.find(p => p.ProductId == this.saleSubProduct.ProductId);
+   console.log(item);
+    if (item !=null) {
+      this.products.splice(this.products.indexOf(item), 1);
+    }
+  }
+  onChangeValues() {
+    let tax = (this.subTotal * this.sale.Tax * 0.01)
+    let discount = (this.subTotal + tax) * this.sale.Discount * 0.01;
+    this.sale.TotalLine = (this.subTotal + tax) - discount;
+  }
+  resetSaleProduct() {
+    this.saleSubProduct = {
       ProductId: 0,
-      ProductName :'',
+      ProductName: '',
       Quantity: 1,
       Price: 1,
       TotalAmount: 0
-    }    
+    }
+    this.onChangeValues();
+   // this.removeItemInProduct();
   }
-  removeSaleProduct(id)
-  {
-   this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
-    
+  removeSaleProduct(id) {
+    this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
+
   }
   save() {
-    if (!this.isUpdate)
-    {
+    if (!this.isUpdate) {
       this.sale.SaleDetails = this.saleProducts;
       this.sale.CustomerId = + this.sale.CustomerId;
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
     }
-      
+
     else
       this.saleService.update(this.sale).subscribe(res => this.messageRespone(res));
   }

@@ -52,12 +52,14 @@ export class SaleComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
-    this.sale = {
-      SoId: 0,
-      CustomerId: 0,
-      TotalLine: 0,  
-      CreateBy: '',
-  
+      this.sale = {
+        SoId: 0,
+        CustomerId: 0,
+        Tax: 0.0,
+        Discount: 0.0,
+        SubTotal: 0,
+        TotalLine: 0,  
+        CreateBy: '',
      // SaleDetails: []
 
     }
