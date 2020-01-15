@@ -8,6 +8,8 @@ export class Customer {
 export class Product {
     ProductId: number
     ProductName: string
+    OrderPrice: number
+    SalePrice: number
     Model: string
     Inventory: number
     Warranty: number

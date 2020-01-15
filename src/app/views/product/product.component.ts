@@ -27,9 +27,11 @@ export class ProductComponent implements OnInit {
     this.product = {
       ProductId: 0,
       ProductName: '',
-      Inventory: 0,
+      OrderPrice: 1,
+      SalePrice: 1,
+      Inventory: 5,
       Model:'',
-      Warranty: 0
+      Warranty: 6
 
     }
     this.isUpdate = false;

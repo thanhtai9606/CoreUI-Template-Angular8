@@ -40,13 +40,14 @@
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-header">Mục thanh toán</div>
                 <div class="card-body">
                     <form #myForm2="ngForm" name="myForm2">
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="name">Khách hàng:</label>
                                 <select class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
+                                    required
                                     name="CustomerId" #CustomerId="ngModel">
                                     <option *ngFor="let c of customers; let i = index" [value]="c.CustomerId">
                                         {{c.CustomerName}}
@@ -107,8 +108,18 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <br>
-                                    <button class="form-control btn btn-success" type="button" (click)=" save()">
-                                        Thanh toán</button>
+                                    <button class="form-control btn btn-success" type="button"
+                                    [swal]="
+                                    {
+                                      title: 'Bạn chắc chứ?',
+                                      text: 'Hóa đơn của bạn sẽ được thực hiện thanh toán!',
+                                      type: 'warning',
+                                      showCancelButton: true,
+                                      confirmButtonColor: '#DD6B55',
+                                      confirmButtonText: 'Ok, Tôi chắc!',
+                                      closeOnConfirm: false
+                                    }" (confirm)="save()"
+                                     [disabled]="myForm2.invalid">Thanh toán</button>
                                 </div>
                             </div>
                         </div>

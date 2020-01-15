@@ -16,15 +16,17 @@ export class SaleReportComponent implements OnInit {
   saleHeader?: SaleHeader;
   customer?: any;
   id: number;
+  currentTax?: number;
+  currentDiscount?: number;
   constructor(private saleService: SaleService,
-              private customerService: CustomerService,
-              private productService: ProductService,
-              private route: ActivatedRoute,
-              private toastr: ToastrService) { }
+    private customerService: CustomerService,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get("id")));
-   this.loadSaleHeader();
+    this.loadSaleHeader();
     this.loadSaleDetail();
   }
 
@@ -33,28 +35,38 @@ export class SaleReportComponent implements OnInit {
       this.sales = res;
     })
   }
-  loadCustomerDetail(id){
-    this.customerService.findById(id).subscribe(res=> {
+  loadCustomerDetail(id) {
+    this.customerService.findById(id).subscribe(res => {
       this.customer = res[0]
-      console.log('customer '+ JSON.stringify(res));
+      console.log('customer ' + JSON.stringify(res));
     })
   }
-  loadSaleHeader()
-  {
+  loadSaleHeader() {
     // this.saleService.findById(this.id).subscribe(res=> 
     //   {
     //     this.saleHeader = res[0] as SaleHeader;
     //     this.loadCustomerDetail(JSON.stringify(this.saleHeader.CustomerId));
     //     console.log('saleHeader '+ JSON.stringify(this.saleHeader[0].CustomerId));
     //   })
-      this.saleService.findById(this.id).toPromise()
-          .then(res=> 
-            {
-              this.saleHeader = res[0] as SaleHeader;
-              this.loadCustomerDetail(JSON.stringify(this.saleHeader.CustomerId));
-              console.log('saleHeader '+ JSON.stringify(this.saleHeader.CustomerId));
-            })
-  
+    this.saleHeader = {
+      SoId: 0,
+      CustomerId: 0,
+      Tax: 0.0,
+      Discount: 0.0,
+      SubTotal: 0,
+      TotalLine: 0,
+      CreateBy: '',
+
+    }
+    this.saleService.findById(this.id).toPromise()
+      .then(res => {
+        this.saleHeader = res[0] as SaleHeader;
+        this.currentTax = this.saleHeader.SubTotal * this.saleHeader.Tax * 0.01;
+        this.currentDiscount = this.saleHeader.SubTotal * this.saleHeader.Discount * 0.01;
+        this.loadCustomerDetail(JSON.stringify(this.saleHeader.CustomerId));
+        console.log('saleHeader ' + JSON.stringify(this.saleHeader.SubTotal));
+      })
+
   }
 
 

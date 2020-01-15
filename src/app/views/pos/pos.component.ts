@@ -76,12 +76,12 @@ export class POSComponent implements OnInit {
   }
   onSelectedChanged() {
     this.productItem = this.products.find(p => p.ProductId == this.saleSubProduct.ProductId);
+    this.saleSubProduct.Price = this.productItem.SalePrice;
   }
   addSaleProductTable() {
     this.subTotal = 0;
     this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;
-
-    this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
+    //this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
     // let currentSubProduct =  this.saleProducts.find(p=>p.ProductId == this.saleSubProduct.ProductId);
     // console.log(currentSubProduct);
     // if( currentSubProduct >0)
@@ -89,7 +89,7 @@ export class POSComponent implements OnInit {
     //   this.saleSubProduct.Quantity += currentSubProduct.Quantity
     // }
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
-    this.saleSubProduct.ProductName = this.productItem.ProductName;
+    this.saleSubProduct.ProductName = this.productItem.ProductName;    
     this.saleProducts.push(this.saleSubProduct);
     this.saleProducts.forEach(product => {
       this.subTotal += product.TotalAmount;
@@ -105,7 +105,8 @@ export class POSComponent implements OnInit {
   }
   onChangeValues() {
     let tax = (this.subTotal * this.sale.Tax * 0.01)
-    let discount = (this.subTotal + tax) * this.sale.Discount * 0.01;
+    let discount = this.subTotal * this.sale.Discount * 0.01;
+    this.sale.SubTotal = this.subTotal;
     this.sale.TotalLine = (this.subTotal + tax) - discount;
   }
   resetSaleProduct() {

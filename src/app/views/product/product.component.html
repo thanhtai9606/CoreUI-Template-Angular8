@@ -11,6 +11,8 @@
                             <tr>
                                 <th hidden>Id</th>
                                 <th>Sản phẩm</th>
+                                <th>Giá nhập</th>
+                                <th>Giá bán</th>
                                 <th>Mẫu mã</th>
                                 <th>Tồn kho</th>
                                 <th>Bảo hành</th>                              
@@ -23,6 +25,8 @@
                             <tr>
                                 <td hidden>{{item.ProductId}}</td>
                                 <td>{{item.ProductName}}</td>
+                                <td>{{item.OrderPrice}}</td>
+                                <td>{{item.SalePrice}}</td>
                                 <td>{{item.Model}}</td>
                                 <td>{{item.Inventory}}</td>
                                 <td>{{item.Warranty}}</td>
@@ -74,6 +78,24 @@
                                 <input class="form-control" id="ProductName" [(ngModel)]="product.ProductName"
                                     name="ProductName" #ProductName="ngModel" type="text" required
                                     placeholder="Enter Product name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Giá nhập:</label>
+                                <input class="form-control" id="OrderPrice" [(ngModel)]="product.OrderPrice" name="OrderPrice"
+                                    #OrderPrice="ngModel" type="number"  required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Giá bán:</label>
+                                <input class="form-control" id="SalePrice" [(ngModel)]="product.SalePrice" name="SalePrice"
+                                    #SalePrice="ngModel" type="number"  required>
                             </div>
                         </div>
                     </div>
