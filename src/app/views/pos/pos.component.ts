@@ -85,8 +85,8 @@ export class POSComponent implements OnInit {
     this.saleProducts.forEach(product => {
       this.subTotal += product.TotalAmount;
     });
-    this.resetSaleProduct();
     this.removeItemInProduct();
+    this.resetSaleProduct();
 
   }
   onChangeValues() {
@@ -100,22 +100,28 @@ export class POSComponent implements OnInit {
       ProductId: 0,
       ProductName: '',
       Quantity: 1,
-      Price: 1,
+      Price: 1000,
       TotalAmount: 0
     }
     this.onChangeValues();
-    
+
+  }
+  checkInventory()
+  {
+    let current = this.products.filter(x => x.ProductId == this.saleSubProduct.ProductId)
+    if(current[0].Inventory < this.saleSubProduct.Quantity){
+      alert(`Số bạn nhập phải nhỏ hơn tồn kho ${current[0].Inventory} < ${this.saleSubProduct.Quantity}` )
+      this.saleSubProduct.Quantity = current[0].Inventory;
+    }
   }
   removeSaleProduct(id) {
     this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
 
   }
-  removeItemInProduct(){
-    let current = this.saleProducts.filter(x=>x.ProductId == this.saleSubProduct.ProductId)
-    if(current.length >0)
-    {
-      this.products =  this.products.filter(p => p.ProductId != current[0].ProductId); 
-    }
+  removeItemInProduct() {
+    let current = this.saleProducts.filter(x => x.ProductId == this.saleSubProduct.ProductId)
+    if (current.length > 0)
+      this.products = this.products.filter(p => p.ProductId != current[0].ProductId);
   }
   save() {
     if (!this.isUpdate) {
@@ -148,6 +154,6 @@ export class POSComponent implements OnInit {
     return this.currencyPipe.transform(temp).replace("$", "");
   }
   transformPrice() {
-    this.saleSubProduct.Price =+ this.formatMoney(this.saleSubProduct.Price);
+    this.saleSubProduct.Price = + this.formatMoney(this.saleSubProduct.Price);
   }
 }

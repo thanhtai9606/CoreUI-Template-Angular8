@@ -58,7 +58,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="name">Số lượng:</label>
-                                    <input class="form-control" id="Quantity" [(ngModel)]="saleSubProduct.Quantity"
+                                    <input class="form-control" id="Quantity" (blur)="checkInventory()" [(ngModel)]="saleSubProduct.Quantity"
                                         name="Quantity" #Quantity="ngModel" type="number"
                                         placeholder="Enter Quantity name" required>
                                 </div>
@@ -68,7 +68,7 @@
                             <div class="col-sm-6">
                                 <label for="name">Giá bán:</label>
                                 <input class="form-control" id="Price" [(ngModel)]="saleSubProduct.Price" name="Price"
-                                    #Price="ngModel" type="number" (blur)="transformPrice()" required>
+                                    #Price="ngModel" type="number" step="1000" (blur)="transformPrice()" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="name">Action:</label>
