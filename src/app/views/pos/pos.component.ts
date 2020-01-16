@@ -6,9 +6,9 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
-import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 import { Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pos',
@@ -29,6 +29,7 @@ export class POSComponent implements OnInit {
   productItem?: Product;
 
   constructor(private saleService: SaleService,
+    private currencyPipe: CurrencyPipe,
     private customerService: CustomerService,
     private productService: ProductService,
     private router: Router,
@@ -60,9 +61,6 @@ export class POSComponent implements OnInit {
       SubTotal: 0,
       TotalLine: 0,
       CreateBy: '',
-
-      // SaleDetails: []
-
     }
     this.resetSaleProduct();
     this.isUpdate = false;
@@ -80,28 +78,16 @@ export class POSComponent implements OnInit {
   }
   addSaleProductTable() {
     this.subTotal = 0;
-    this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;
-    //this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
-    // let currentSubProduct =  this.saleProducts.find(p=>p.ProductId == this.saleSubProduct.ProductId);
-    // console.log(currentSubProduct);
-    // if( currentSubProduct >0)
-    // {
-    //   this.saleSubProduct.Quantity += currentSubProduct.Quantity
-    // }
+    //this.saleSubProduct.ProductId =+ this.saleSubProduct.ProductId;
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
-    this.saleSubProduct.ProductName = this.productItem.ProductName;    
+    this.saleSubProduct.ProductName = this.productItem.ProductName;
     this.saleProducts.push(this.saleSubProduct);
     this.saleProducts.forEach(product => {
       this.subTotal += product.TotalAmount;
     });
     this.resetSaleProduct();
-  }
-  removeItemInProduct() {
-    let item = this.products.find(p => p.ProductId == this.saleSubProduct.ProductId);
-   console.log(item);
-    if (item !=null) {
-      this.products.splice(this.products.indexOf(item), 1);
-    }
+    this.removeItemInProduct();
+
   }
   onChangeValues() {
     let tax = (this.subTotal * this.sale.Tax * 0.01)
@@ -118,11 +104,18 @@ export class POSComponent implements OnInit {
       TotalAmount: 0
     }
     this.onChangeValues();
-   // this.removeItemInProduct();
+    
   }
   removeSaleProduct(id) {
     this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
 
+  }
+  removeItemInProduct(){
+    let current = this.saleProducts.filter(x=>x.ProductId == this.saleSubProduct.ProductId)
+    if(current.length >0)
+    {
+      this.products =  this.products.filter(p => p.ProductId != current[0].ProductId); 
+    }
   }
   save() {
     if (!this.isUpdate) {
@@ -149,5 +142,12 @@ export class POSComponent implements OnInit {
   delete(id: number) {
     console.log(id);
     this.saleService.delete(id).subscribe(res => this.messageRespone(res));
+  }
+  formatMoney(value) {
+    const temp = `${value}`.replace(/\,/g, "");
+    return this.currencyPipe.transform(temp).replace("$", "");
+  }
+  transformPrice() {
+    this.saleSubProduct.Price =+ this.formatMoney(this.saleSubProduct.Price);
   }
 }

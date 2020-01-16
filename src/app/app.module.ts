@@ -19,6 +19,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
 import { SaleReportComponent } from './views/sale-report/sale-report.component';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,13 +50,11 @@ import { SaleReportComponent } from './views/sale-report/sale-report.component';
     }),
     SweetAlert2Module.forRoot(),
     LayoutsModule
-  ],  
-  providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'de-DE' // 'de-DE' for Germany, 'fr-FR' for France ...
-    }
   ],
+  providers: [
+    DatePipe,
+    CurrencyPipe
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

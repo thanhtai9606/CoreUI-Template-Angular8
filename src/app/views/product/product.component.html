@@ -25,12 +25,12 @@
                             <tr>
                                 <td hidden>{{item.ProductId}}</td>
                                 <td>{{item.ProductName}}</td>
-                                <td>{{item.OrderPrice}}</td>
-                                <td>{{item.SalePrice}}</td>
+                                <td>{{item.OrderPrice | currency:'VND':true}}</td>
+                                <td>{{item.SalePrice | currency:'VND':true}}</td>
                                 <td>{{item.Model}}</td>
                                 <td>{{item.Inventory}}</td>
                                 <td>{{item.Warranty}}</td>
-                                <td>{{item.ModifiedDate}}</td>
+                                <td>{{item.ModifiedDate | date: 'dd/MM/yyyy'}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
                                         (click)="edit(item.ProductId)"> <i class="fa fa-pencil"></i></button>

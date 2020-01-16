@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SaleService } from 'src/app/services/sale.service';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sale-detail',
@@ -21,6 +22,12 @@ export class SaleDetailComponent implements OnInit {
     this.saleService.getSaleById(this.id).subscribe(res=>{
       this.sales = res;
     })
+  }
+
+  isExpired(date) {
+    // your date logic here, recommend moment.js;
+    return moment(date).isBefore(moment(new Date()));
+
   }
 
 }

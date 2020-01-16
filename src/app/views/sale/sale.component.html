@@ -25,7 +25,7 @@
                                     <a [routerLink]="['/saleDetailView',item.SoId]">{{item.CustomerName}}</a>
                                 </td>
                                 <td>{{item.Phone}}</td>
-                                <td>{{item.TotalLine}}$</td>
+                                <td>{{item.TotalLine | currency:'VND':true}}</td>
                                 <td>{{item.ModifiedDate}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
@@ -150,8 +150,8 @@
                                             <td >{{item.ProductId}}</td>
                                             <td>{{item.ProductName}}</td>
                                             <td>{{item.Quantity}}</td>                                            
-                                            <td>{{item.Price }}$</td>                                            
-                                            <td>{{item.TotalAmount}}$</td>
+                                            <td>{{item.Price | currency:'EUR':true }}</td>                                            
+                                            <td>{{item.TotalAmount | currency:'EUR':true }}</td>
                                             <td>
                                                 <button class="btn btn-danger btn-sm"
                                                     (click)="removeSaleProduct(item.ProductId)"> Delete</button>

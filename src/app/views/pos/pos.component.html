@@ -26,8 +26,8 @@
                                 <td>{{item.ProductId}}</td>
                                 <td>{{item.ProductName}}</td>
                                 <td>{{item.Quantity}}</td>
-                                <td>{{item.Price }}$</td>
-                                <td>{{item.TotalAmount}}$</td>
+                                <td>{{item.Price | currency:'VND':true}}</td>
+                                <td>{{item.TotalAmount | currency:'VND':true }}</td>
                                 <td>
                                     <button class="btn btn-danger btn-sm" (click)="removeSaleProduct(item.ProductId)">
                                         Delete</button>
@@ -42,13 +42,12 @@
             <div class="card">
                 <div class="card-header">Mục thanh toán</div>
                 <div class="card-body">
-                    <form #myForm2="ngForm" name="myForm2">
+                    <form #myForm="ngForm" name="myForm">
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="name">Khách hàng:</label>
                                 <select class="form-control" id="CustomerId" [(ngModel)]="sale.CustomerId"
-                                    required
-                                    name="CustomerId" #CustomerId="ngModel">
+                                    name="CustomerId" #CustomerId="ngModel" required>
                                     <option *ngFor="let c of customers; let i = index" [value]="c.CustomerId">
                                         {{c.CustomerName}}
                                     </option>
@@ -60,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="name">Số lượng:</label>
                                     <input class="form-control" id="Quantity" [(ngModel)]="saleSubProduct.Quantity"
-                                        name="Quantity" #Quantity="ngModel" type="number" value="1"
+                                        name="Quantity" #Quantity="ngModel" type="number"
                                         placeholder="Enter Quantity name" required>
                                 </div>
                             </div>
@@ -69,12 +68,11 @@
                             <div class="col-sm-6">
                                 <label for="name">Giá bán:</label>
                                 <input class="form-control" id="Price" [(ngModel)]="saleSubProduct.Price" name="Price"
-                                    #Price="ngModel" type="number" value="1" required>
+                                    #Price="ngModel" type="number" (blur)="transformPrice()" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="name">Action:</label>
-                                <button class="form-control btn btn-info"
-                                    [disabled]="myForm2.invalid && saleSubProduct.ProductId != 0" type="button"
+                                <button class="form-control btn btn-info" type="button"
                                     (click)=" addSaleProductTable()">
                                     Thêm</button>
                             </div>
@@ -83,9 +81,9 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="name">Chiết khấu %:</label>
-                                    <input class="form-control" id="Discount" (change)="onChangeValues()" 
-                                    [(ngModel)]="sale.Discount"
-                                        name="Discount" #Discount="ngModel" type="number" value="0.0" required>
+                                    <input class="form-control" id="Discount" (change)="onChangeValues()"
+                                        [(ngModel)]="sale.Discount" name="Discount" #Discount="ngModel" type="number"
+                                        value="0.0" required>
                                 </div>
                             </div>
                         </div>
@@ -93,37 +91,36 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="name">Thuế %:</label>
-                                    <input class="form-control" id="Tax" [(ngModel)]="sale.Tax" (change)="onChangeValues()"
-                                        name="Tax" #Tax="ngModel" type="number" value="0.0" required>
+                                    <input class="form-control" id="Tax" [(ngModel)]="sale.Tax"
+                                        (change)="onChangeValues()" name="Tax" #Tax="ngModel" type="number" value="0.0"
+                                        required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="name">Thành tiền:</label>
-                                <h3>{{sale.TotalLine}}</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <br>
-                                    <button class="form-control btn btn-success" type="button"
-                                    [swal]="
-                                    {
-                                      title: 'Bạn chắc chứ?',
-                                      text: 'Hóa đơn của bạn sẽ được thực hiện thanh toán!',
-                                      type: 'warning',
-                                      showCancelButton: true,
-                                      confirmButtonColor: '#DD6B55',
-                                      confirmButtonText: 'Ok, Tôi chắc!',
-                                      closeOnConfirm: false
-                                    }" (confirm)="save()"
-                                     [disabled]="myForm2.invalid">Thanh toán</button>
-                                </div>
+                                <h3>{{sale.TotalLine | currency:'VND':true}}</h3>
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <br>
+                                <button class="form-control btn btn-success" type="button" [swal]="
+                                {
+                                  title: 'Bạn chắc chứ?',
+                                  text: 'Hóa đơn của bạn sẽ được thực hiện thanh toán!',
+                                  type: 'warning',
+                                  showCancelButton: true,
+                                  confirmButtonColor: '#DD6B55',
+                                  confirmButtonText: 'Ok, Tôi chắc!',
+                                  closeOnConfirm: false
+                                }" (confirm)="save()" [disabled]="myForm.invalid">Thanh toán</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -43,10 +43,10 @@
                                     <td hidden>S{{item.SoId}}</td>
                                     <td>{{item.SoId}}</td>
                                     <td>{{item.ProductName}}</td>
-                                    <td>{{item.TotalAmount}}</td>
+                                    <td>{{item.TotalAmount | currency:'VND':true}}</td>
                                     <td>{{item.Warranty}}</td>
-                                    <td>{{item.WarrantyStart}}</td>
-                                    <td>{{item.WarrantyEnd}}</td>                                   
+                                    <td>{{item.WarrantyStart | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{item.WarrantyEnd | date: 'dd/MM/yyyy' }}</td>                                   
                                 </tr>
                             </tbody>
                         </table>
@@ -63,15 +63,15 @@
                                 <tbody>
                                     <tr>
                                         <td class="left"><strong>Tổng</strong></td>
-                                         <td class="right">{{saleHeader.SubTotal}}$</td>
+                                         <td class="right">{{saleHeader.SubTotal | currency:'VND':true}}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Giảm giá ({{saleHeader.Discount}}%)</strong></td>
-                                        <td class="right">{{currentDiscount}}$</td>
+                                        <td class="right">{{currentDiscount | currency:'VND':true }}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>VAT ({{saleHeader.Tax}}%)</strong></td>
-                                        <td class="right">{{currentTax}}$</td>
+                                        <td class="right">{{currentTax | currency:'VND':true}}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Tổng thanh toán</strong></td>

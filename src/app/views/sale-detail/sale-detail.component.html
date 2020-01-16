@@ -12,6 +12,7 @@
                                 <th>ProductName</th>
                                 <th>TotalAmount</th>
                                 <th>Warranty</th>
+                                <th>Status</th>
                                 <th>WarrantyStart</th>
                                 <th>WarrantyEnd</th>                               
                                 <th>Actions</th>
@@ -24,9 +25,13 @@
                                 <td>{{item.SoId}}</td>
                                 <td>{{item.ProductName}}</td>
                                 <td>{{item.TotalAmount}}</td>
-                                <td>{{item.Warranty}}</td>
-                                <td>{{item.WarrantyStart}}</td>
-                                <td>{{item.WarrantyEnd}}</td>
+                                <td>{{item.Warranty }} </td>
+                                <td>
+                                    <span *ngIf="!isExpired(item.WarrantyEnd)" class="badge badge-primary">Còn hạn</span> 
+                                    <span *ngIf="isExpired(item.WarrantyEnd)" class="badge badge-danger">Hết hạn</span> 
+                                </td>
+                                <td>{{item.WarrantyStart | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{item.WarrantyEnd | date: 'dd/MM/yyyy'}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
                                         (click)="edit(item.SoId)"> <i class="fa fa-pencil"></i></button>
