@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'node_modules/ngx-toastr';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { User, Login } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +11,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+    
+  ) { }
 
-  constructor() { }
-
+  laddaSubmitLoading = false;
   ngOnInit() {
+    this.resetForm();
   }
-
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.resetForm();
+  }
+  loginUser() {
+    this.laddaSubmitLoading = true;
+    this.authService.login().toPromise().then(res=> {
+      if (res["token"] != null) {
+        this.authService.currentUser.Token = res["token"];
+        localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
+        localStorage.setItem('userToken', JSON.stringify(res["token"]));
+        this.authService.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.router.navigateByUrl('mainView');
+      }
+      else {
+        this.toastr.warning('Incorrect password or username', 'Login failed!');
+        console.log(res["errors"]);
+      }
+      this.laddaSubmitLoading = false;
+    }).catch(err=>{
+      this.toastr.error(err.message,err.statusText+': '+err.status);
+    });
+    ;
+  }
 }

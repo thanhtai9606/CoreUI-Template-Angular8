@@ -20,6 +20,8 @@ import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
 import { SaleReportComponent } from './views/sale-report/sale-report.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { AuthGuard } from './services/auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { DatePipe, CurrencyPipe } from '@angular/common';
   ],
   providers: [
     DatePipe,
-    CurrencyPipe
+    CurrencyPipe,
+    AuthGuard, 
+    AuthService
     ],
   bootstrap: [AppComponent]
 })

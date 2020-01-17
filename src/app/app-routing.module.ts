@@ -11,6 +11,7 @@ import { ProductComponent } from './views/product/product.component';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
 import { SaleReportComponent } from './views/sale-report/sale-report.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 const routes: Routes = [
@@ -18,12 +19,12 @@ const routes: Routes = [
   {
     path: '', component: BasicComponent,
     children: [
-      { path: 'mainView', component: DashboardComponent },
-      { path: 'customerView', component: CustomerComponent },
-      { path: 'productView', component: ProductComponent },
-      { path: 'saleView', component: SaleComponent },
-      { path: 'saleDetailView/:id', component: SaleDetailComponent },    
-      { path: 'posView', component: POSComponent }
+      { path: 'mainView', component: DashboardComponent,canActivate: [AuthGuard] },
+      { path: 'customerView', component: CustomerComponent,canActivate: [AuthGuard] },
+      { path: 'productView', component: ProductComponent,canActivate: [AuthGuard] },
+      { path: 'saleView', component: SaleComponent,canActivate: [AuthGuard] },
+      { path: 'saleDetailView/:id', component: SaleDetailComponent,canActivate: [AuthGuard] },    
+      { path: 'posView', component: POSComponent,canActivate: [AuthGuard] }
     ]
   },
   {
