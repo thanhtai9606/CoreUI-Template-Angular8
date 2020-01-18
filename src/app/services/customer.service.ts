@@ -9,6 +9,7 @@ const ApiUrl = "api/customer";
   providedIn: 'root'
 })
 
+
 export class CustomerService {
    httpOptions = {
     headers: new HttpHeaders({
@@ -34,6 +35,6 @@ export class CustomerService {
   }
 
   findById(id){
-    return this.http.get<Customer>(`${ApiUrl}/GetCustomerById?id=${id}`)
+    return this.http.get<Customer>(`${ApiUrl}/findCustomerById?id=${id}`)
   }
 }

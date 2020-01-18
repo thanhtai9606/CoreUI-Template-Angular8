@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
-const url = "api/v1/admin"
+const url = "api/admin"
 
 
 @Injectable({providedIn: 'root'})
@@ -17,6 +18,7 @@ export class AdminService {
       'Content-Type': 'application/json; charset=utf-8 ',
       'Authorization': "Bearer "+ this.authService.currentUser.Token
     })
+    
   }
 
   getRoleByUser(username: string)

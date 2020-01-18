@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
-const url ='api/v1/identity'
+const url ='api/identity'
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +30,12 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.router.navigateByUrl('login');
   }
-
+  getToken()
+  {
+    let current=  localStorage.getItem('currentUser');
+    console.log('token '+ current);
+    return "cxc";
+  }
   login() {
     
     let params =

@@ -31,7 +31,7 @@ export class SaleService {
   }
 
   getSaleById(id){
-    return this.http.get(`${ApiUrl}/getSaleById?soId=${id}`)
+    return this.http.get(`${ApiUrl}/findSaleById?soId=${id}`)
   }
 
   getProducts(){

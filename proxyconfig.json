@@ -1,7 +1,8 @@
 {
     "/api/*":{
-        "target":"http://172.17.0.2:6789",
+        "target":"http://172.17.0.2:6789/api/v1",
         "sercure":false,
-        "changeOrigin":true
+        "changeOrigin":true,
+        "pathRewrite": {"^/api" : ""}  
     }
 }

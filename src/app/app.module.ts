@@ -12,7 +12,7 @@ import { ProductComponent } from './views/product/product.component';
 import { CustomerComponent } from './views/customer/customer.component';
 import { SaleComponent } from './views/sale/sale.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
@@ -22,6 +22,7 @@ import { SaleReportComponent } from './views/sale-report/sale-report.component';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './services/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -56,9 +57,14 @@ import { AuthService } from './services/auth.service';
   providers: [
     DatePipe,
     CurrencyPipe,
-    AuthGuard, 
-    AuthService
-    ],
+    AuthGuard,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
