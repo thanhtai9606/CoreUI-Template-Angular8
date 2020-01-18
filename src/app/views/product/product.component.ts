@@ -73,6 +73,7 @@ export class ProductComponent implements OnInit {
   }
   refreshGrid() {
     this.productService.getAll().subscribe((res) => {
+      console.log(res);
       this.products = res;
     });
   }

@@ -42,10 +42,10 @@ export class POSComponent implements OnInit {
       closeOnSelect: false,
       width: '300'
     };
-    this.saleService.getProducts().subscribe(res => {
+    this.productService.getAll().subscribe(res => {
       this.products = res as any;
     })
-    this.saleService.getCustomers().subscribe(res => {
+    this.customerService.getAll().subscribe(res => {
       this.customers = res as any;
     })
     this.resetForm();
@@ -127,6 +127,12 @@ export class POSComponent implements OnInit {
     if (!this.isUpdate) {
       this.sale.SaleDetails = this.saleProducts;
       this.sale.CustomerId = + this.sale.CustomerId;
+      this.sale.Customer={
+        CustomerId:0,
+        CustomerName:'',
+        Address :'',
+        Phone :''
+      }
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
     }
 

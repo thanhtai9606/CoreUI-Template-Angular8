@@ -1,59 +1,52 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
 
 const url = "api/admin"
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AdminService {
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ){}
+  ) { }
 
-   httpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8 ',
-      'Authorization': "Bearer "+ this.authService.currentUser.Token
+      'Authorization': "Bearer " + this.authService.currentUser.Token
     })
-    
+
   }
 
-  getRoleByUser(username: string)
-  {
+  getRoleByUser(username: string) {
     var option = this.httpOptions;
-    return this.http.get<any>(`${url}/getRolesAsync`,{
-      params:{username:username},
-      headers: option.headers
+    return this.http.get<any>(`${url}/getRolesAsync`, {
+      params: { username: username }
     });
   }
-  getUsers()
-  {
+  getUsers() {
     var option = this.httpOptions;
-    return this.http.get<any>(`${url}/getUsers`,option);
+    return this.http.get<any>(`${url}/getUsers`, option);
   }
 
-  getRoles()
-  {
+  getRoles() {
     var option = this.httpOptions;
-    return this.http.get<any>(`${url}/getRoles`,option);
+    return this.http.get<any>(`${url}/getRoles`, option);
   }
 
-  toogleRole(Username: string, roles: string[],toogleValue: boolean)
-  {
-    var urlString = toogleValue? 'addtoRole': 'removeToRole';
-    var method = toogleValue? 'POST': 'DELETE';
-    return this.http.request(method,`${url}/${urlString}`,{
-      body:{
-        Username:Username,
-        roles:roles
+  toogleRole(Username: string, roles: string[], toogleValue: boolean) {
+    var urlString = toogleValue ? 'addtoRole' : 'removeToRole';
+    var method = toogleValue ? 'POST' : 'DELETE';
+    return this.http.request(method, `${url}/${urlString}`, {
+      body: {
+        Username: Username,
+        roles: roles
       },
-      headers: this.httpOptions.headers,
-      params:{
-        Username:Username,
-        roles:roles
+      params: {
+        Username: Username,
+        roles: roles
       }
     },
     );

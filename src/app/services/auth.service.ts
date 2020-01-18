@@ -30,12 +30,6 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.router.navigateByUrl('login');
   }
-  getToken()
-  {
-    let current=  localStorage.getItem('currentUser');
-    console.log('token '+ current);
-    return "cxc";
-  }
   login() {
     
     let params =

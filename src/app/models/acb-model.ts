@@ -25,6 +25,7 @@ export class SaleHeader{
     CreateBy: string
 
     SaleDetails?: SaleDetail[]
+    Customer?: Customer;
    
 }
 export class SaleDetail{

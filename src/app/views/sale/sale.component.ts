@@ -40,12 +40,12 @@ export class SaleComponent implements OnInit {
       closeOnSelect: false,
       width: '300'
     };
-    this.saleService.getProducts().subscribe(res=>{
-      this.products = res as any;
-    })
-    this.saleService.getCustomers().subscribe(res=>{
-      this.customers = res as any;
-    })
+    // this.saleService.getProducts().subscribe(res=>{
+    //   this.products = res as any;
+    // })
+    // this.saleService.getCustomers().subscribe(res=>{
+    //   this.customers = res as any;
+    // })
     this.resetForm();
     this.refreshGrid();
   }
