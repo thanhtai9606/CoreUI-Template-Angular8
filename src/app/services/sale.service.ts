@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SaleHeader, Select2Data } from '../models/acb-model';
 
-const ApiUrl = "api/Sale";
+const ApiUrl = "api/sale";
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +27,7 @@ export class SaleService {
   }
 
   findById(id){
-    return this.http.get<SaleHeader>(`${ApiUrl}/getSaleHeaderById?soId=${id}`);
+    return this.http.get<SaleHeader>(`${ApiUrl}/findSaleHeaderById?soId=${id}`);
   }
 
   getSaleById(id){

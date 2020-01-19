@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { Options } from 'select2';
 import { Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-pos',
@@ -33,6 +34,7 @@ export class POSComponent implements OnInit {
     private customerService: CustomerService,
     private productService: ProductService,
     private router: Router,
+    private authService: AuthService,
     private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -68,8 +70,6 @@ export class POSComponent implements OnInit {
   }
   edit(id) {
     this.isUpdate = true;
-    //this.sale = this.customers.find(s => s.CustomerId == id);
-    //debugger;
 
   }
   onSelectedChanged() {
@@ -78,7 +78,7 @@ export class POSComponent implements OnInit {
   }
   addSaleProductTable() {
     this.subTotal = 0;
-    //this.saleSubProduct.ProductId =+ this.saleSubProduct.ProductId;
+    this.saleSubProduct.ProductId =+ this.saleSubProduct.ProductId;
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
     this.saleSubProduct.ProductName = this.productItem.ProductName;
     this.saleProducts.push(this.saleSubProduct);
@@ -127,12 +127,7 @@ export class POSComponent implements OnInit {
     if (!this.isUpdate) {
       this.sale.SaleDetails = this.saleProducts;
       this.sale.CustomerId = + this.sale.CustomerId;
-      this.sale.Customer={
-        CustomerId:0,
-        CustomerName:'',
-        Address :'',
-        Phone :''
-      }
+      this.sale.CreateBy = this.authService.currentUser.Username
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
     }
 

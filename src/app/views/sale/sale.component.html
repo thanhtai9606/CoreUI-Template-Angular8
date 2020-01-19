@@ -26,7 +26,7 @@
                                 </td>
                                 <td>{{item.Phone}}</td>
                                 <td>{{item.TotalLine | currency:'VND':true}}</td>
-                                <td>{{item.ModifiedDate | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{item.ModifiedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#myModal" class="btn btn-success"
                                         (click)="edit(item.SoId)"> <i class="fa fa-pencil"></i></button>

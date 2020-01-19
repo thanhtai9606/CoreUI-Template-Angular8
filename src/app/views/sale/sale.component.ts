@@ -60,7 +60,6 @@ export class SaleComponent implements OnInit {
         SubTotal: 0,
         TotalLine: 0,  
         CreateBy: '',
-     // SaleDetails: []
 
     }
     this.resetSaleProduct();

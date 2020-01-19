@@ -23,9 +23,7 @@ export class SaleHeader{
     Discount: number;
     TotalLine: number 
     CreateBy: string
-
     SaleDetails?: SaleDetail[]
-    Customer?: Customer;
    
 }
 export class SaleDetail{

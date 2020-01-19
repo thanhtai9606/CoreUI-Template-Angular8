@@ -55,11 +55,11 @@ export class SaleReportComponent implements OnInit {
       Discount: 0.0,
       SubTotal: 0,
       TotalLine: 0,
-      CreateBy: '',
-
+      CreateBy: ''
     }
     this.saleService.findById(this.id).toPromise()
       .then(res => {
+        console.log(res);
         this.saleHeader = res[0] as SaleHeader;
         this.currentTax = this.saleHeader.SubTotal * this.saleHeader.Tax * 0.01;
         this.currentDiscount = this.saleHeader.SubTotal * this.saleHeader.Discount * 0.01;
