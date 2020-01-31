@@ -22,8 +22,8 @@ export class SaleService {
     return this.http.delete(`${ApiUrl}/deleteSale/${id}`)
   }
 
-  getAll(){
-    return this.http.get<SaleHeader[]>(`${ApiUrl}/getSale`)
+  getAll(key, size){
+    return this.http.get<SaleHeader[]>(`${ApiUrl}/getSale?key=${key}&size=${size}`)
   }
 
   findById(id){

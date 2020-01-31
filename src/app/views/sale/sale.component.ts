@@ -19,18 +19,21 @@ export class SaleComponent implements OnInit {
   sales: any;
   sale: SaleHeader;
   saleSubProduct: SaleProduct;
-  saleProducts: any =[];
+  saleProducts: any = [];
   operationResult: OperationResult;
   isUpdate: boolean = false;
   customers: Customer[];//Array<Select2OptionData>;
   products: Product[]; //Array<Select2OptionData>;
   options: Options;
-  totalLine : number = 0;
+  totalLine: number = 0;
   productItem?: Product;
   dtOptions: DataTables.Settings = {};
-  
-  constructor(private saleService: SaleService, 
-              private toastr: ToastrService) { }
+  key: '';
+  itemSize: number = 10;
+  size = [10, 20, 40, 50]
+
+  constructor(private saleService: SaleService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.options = {
@@ -50,19 +53,20 @@ export class SaleComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
-      this.sale = {
-        SoId: 0,
-        CustomerId: 0,
-        Tax: 0.0,
-        Discount: 0.0,
-        SubTotal: 0,
-        TotalLine: 0,  
-        CreateBy: '',
+    this.key = ''
+    this.sale = {
+      SoId: 0,
+      CustomerId: 0,
+      Tax: 0.0,
+      Discount: 0.0,
+      SubTotal: 0,
+      TotalLine: 0,
+      CreateBy: '',
 
     }
     this.resetSaleProduct();
     this.isUpdate = false;
-    
+
   }
   edit(id) {
     this.isUpdate = true;
@@ -70,41 +74,42 @@ export class SaleComponent implements OnInit {
     //debugger;
 
   }
-  onSelectedChanged(){
-   this.productItem = this.products.find(p=>p.ProductId == this.saleSubProduct.ProductId);
+  onSelectedChanged() {
+    this.productItem = this.products.find(p => p.ProductId == this.saleSubProduct.ProductId);
   }
-  addSaleProductTable()
-  {       
+  addSaleProductTable() {
 
     this.saleSubProduct.ProductId = + this.saleSubProduct.ProductId;
     this.saleSubProduct.Price = this.saleSubProduct.Price * 1000;
     this.saleSubProduct.TotalAmount = this.saleSubProduct.Quantity * this.saleSubProduct.Price;
-    this.saleSubProduct.ProductName = this.productItem.ProductName; 
+    this.saleSubProduct.ProductName = this.productItem.ProductName;
     this.saleProducts.push(this.saleSubProduct);
     this.resetSaleProduct();
   }
-  resetSaleProduct(){
-    this.saleSubProduct={
+  resetSaleProduct() {
+    this.saleSubProduct = {
       ProductId: 0,
-      ProductName :'',
+      ProductName: '',
       Quantity: 0,
       Price: 0,
       TotalAmount: 0
     }
   }
-  removeSaleProduct(id)
-  {
-   this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
-    
+  onKey(event: any) {
+    this.key = event.target.value
+    this.saleService.getAll(this.key, this.itemSize).subscribe(res => this.sales = res);
+  }
+  removeSaleProduct(id) {
+    this.saleProducts.splice(this.saleProducts.indexOf(id), 1);
+
   }
   save() {
-    if (!this.isUpdate)
-    {
+    if (!this.isUpdate) {
       this.sale.SaleDetails = this.saleProducts;
       this.sale.CustomerId = + this.sale.CustomerId;
       this.saleService.add(this.sale).subscribe(res => this.messageRespone(res));
     }
-      
+
     else
       this.saleService.update(this.sale).subscribe(res => this.messageRespone(res));
   }
@@ -125,9 +130,11 @@ export class SaleComponent implements OnInit {
     this.saleService.delete(id).subscribe(res => this.messageRespone(res));
   }
   refreshGrid() {
-    this.saleService.getAll().subscribe((res) => {
-      this.sales = res;
-    });
+    // this.saleService.getAll(this.key).subscribe((res) => {
+    //   this.sales = res;
+    // });
+    this.saleService.getAll(this.key, this.itemSize).subscribe(res => this.sales = res);
+    // this.saleService.getAll(this.key).toPromise().then(res=>this.sales = res);
   }
 
 
