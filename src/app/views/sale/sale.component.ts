@@ -27,10 +27,9 @@ export class SaleComponent implements OnInit {
   options: Options;
   totalLine : number = 0;
   productItem?: Product;
+  dtOptions: DataTables.Settings = {};
   
   constructor(private saleService: SaleService, 
-              private customerService: CustomerService,
-              private productService: ProductService,
               private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -40,12 +39,11 @@ export class SaleComponent implements OnInit {
       closeOnSelect: false,
       width: '300'
     };
-    // this.saleService.getProducts().subscribe(res=>{
-    //   this.products = res as any;
-    // })
-    // this.saleService.getCustomers().subscribe(res=>{
-    //   this.customers = res as any;
-    // })
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
     this.resetForm();
     this.refreshGrid();
   }

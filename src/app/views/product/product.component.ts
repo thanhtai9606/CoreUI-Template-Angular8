@@ -60,7 +60,7 @@ export class ProductComponent implements OnInit {
       this.toastr.success(this.operationResult.Message, this.operationResult.Caption);
       this.resetForm();
       this.refreshGrid();
-      $("#myModal").modal("hide");
+     // $("#myModal").modal("hide");
     } else
       this.toastr.error(this.operationResult.Message, this.operationResult.Caption);
   }

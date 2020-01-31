@@ -24,15 +24,30 @@ export class SaleReportComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService) { }
 
+    public data = [
+      {name: 'a', email: 'therichpost@gmail.com', website:'therichpost.com'},
+      {name: 'therichpost', email: 'xx@gmail.com', website:'therichpost.com'},
+      {name: 'therichpost', email: '123@gmail.com', website:'therichpost.com'},
+      {name: 'z', email: 'therichpost@gmail.com', website:'therichpost.com'},
+  ];
+  dtOptions: DataTables.Settings = {};
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get("id")));
     this.loadSaleHeader();
     this.loadSaleDetail();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+
   }
 
   loadSaleDetail() {
     this.saleService.getSaleById(this.id).subscribe(res => {
+      console.log(res)
       this.sales = res;
+      console.log(this.data);
     })
   }
   loadCustomerDetail(id) {

@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'node_modules/ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
+import { DataTablesModule } from 'angular-datatables';
 import { SaleDetailComponent } from './views/sale-detail/sale-detail.component';
 import { POSComponent } from './views/pos/pos.component';
 import { SaleReportComponent } from './views/sale-report/sale-report.component';
@@ -43,6 +44,7 @@ import { AuthInterceptor } from './services/AuthInterceptor';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -64,6 +66,9 @@ import { AuthInterceptor } from './services/AuthInterceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
+  ],
+  exports:[
+    DataTablesModule
   ],
   bootstrap: [AppComponent]
 })

@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <button class="btn btn-secondary mb-1" type="button" data-toggle="modal" data-target="#myModal"><i
                             class="fa fa-plus"></i> Thêm mới</button>
-                    <table class="table table-bordered table-striped table-hover">
+                    <table datatable [dtOptions]="dtOptions" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -18,8 +18,8 @@
                             </tr>
                         </thead>
 
-                        <tbody *ngFor="let item of sales; let i = index">
-                            <tr>
+                        <tbody >
+                            <tr *ngFor="let item of sales; let i = index">
                                 <td>{{i+1}}</td>
                                 <td>
                                     <a [routerLink]="['/saleDetailView',item.SoId]">{{item.CustomerName}}</a>

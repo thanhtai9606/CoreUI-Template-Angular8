@@ -23,9 +23,9 @@
                         </div>                      
 
                     </div>
-
+                  
                     <div class="table-responsive-sm">
-                        <table class="table table-striped table-hover">
+                        <table  class="table table-striped table-hover">
                             <thead>                          
                                 <tr>
                                     <th hidden>Id</th>
@@ -36,10 +36,9 @@
                                     <th>Bắt đầu</th>
                                     <th>Kết thúc</th>                            
                                 </tr>
-                            </thead>
-    
-                            <tbody *ngFor="let item of sales">
-                                <tr>
+                            </thead>    
+                            <tbody>
+                                <tr *ngFor="let item of sales">
                                     <td hidden>S{{item.SoId}}</td>
                                     <td>{{item.SoId}}</td>
                                     <td>{{item.ProductName}}</td>
@@ -74,8 +73,8 @@
                                         <td class="right">{{currentTax | currency:'VND':true}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="left"><strong>Tổng thanh toán</strong></td>
-                                        <td class="right"><strong>{{saleHeader.TotalLine}}$</strong></td>
+                                        <td class="left"><strong>Thanh toán</strong></td>
+                                        <td class="right"><strong>{{saleHeader.TotalLine | currency:'VND':true}}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>                             
