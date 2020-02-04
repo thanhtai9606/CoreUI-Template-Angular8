@@ -66,7 +66,10 @@ export class POSComponent implements OnInit {
     }
     this.resetSaleProduct();
     this.isUpdate = false;
-
+  }
+  RowSelected(item) {
+    console.log(item)
+    this.saleSubProduct = item;
   }
   edit(id) {
     this.isUpdate = true;
@@ -113,6 +116,7 @@ export class POSComponent implements OnInit {
       alert(`Số bạn nhập phải nhỏ hơn tồn kho ${current[0].Inventory} < ${this.saleSubProduct.Quantity}` )
       this.saleSubProduct.Quantity = current[0].Inventory;
     }
+    this.addSaleProductTable();
   }
   removeSaleProduct(id) {
     this.saleProducts.splice(this.saleProducts.indexOf(id), 1);

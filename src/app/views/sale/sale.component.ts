@@ -29,7 +29,7 @@ export class SaleComponent implements OnInit {
   productItem?: Product;
   dtOptions: DataTables.Settings = {};
   key: '';
-  itemSize: number = 10;
+  itemSize: number =10 ;
   size = [10, 20, 40, 50]
 
   constructor(private saleService: SaleService,
@@ -47,6 +47,7 @@ export class SaleComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
+    
     this.resetForm();
     this.refreshGrid();
   }

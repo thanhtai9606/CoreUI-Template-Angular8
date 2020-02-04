@@ -18,7 +18,7 @@
                                 <label for="">Danh sách</label>
                             </div>
                             <div class="col-lg-4">
-                                <select class="form-control" id="itemSize" [(ngModel)]="itemSize">
+                                <select class="form-control" id="itemSize" [(ngModel)]="itemSize" name="itemSize" >
                                     <option *ngFor="let s of size;" [value]="s">
                                         {{s}}
                                     </option>

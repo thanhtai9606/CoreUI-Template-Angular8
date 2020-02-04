@@ -9,12 +9,12 @@
                                 <i class="icon-settings"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Ngày</a>
-                                <a class="dropdown-item" href="#">Tháng</a>
-                                <a class="dropdown-item" href="#">Năm</a>
+                                <a class="dropdown-item sale" value="day" (click) ="Sale('day')" >Ngày</a>
+                                <a class="dropdown-item sale" value="month" (click) ="Sale('month')" >Tháng</a>
+                                <a class="dropdown-item sale" value="year" (click) ="Sale('year')" >Năm</a>
                             </div>
                         </div>
-                        <div class="text-value">9.823</div>
+                        <div class="text-value">{{logSale | currency:'VND':true}}</div>
                         <div>Bán hàng</div>
                     </div>
                     <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -29,7 +29,7 @@
                         <button class="btn btn-transparent p-0 float-right" type="button">
                             <i class="icon-location-pin"></i>
                         </button>
-                        <div class="text-value">9.823</div>
+                        <div class="text-value">{{logInventory}}</div>
                         <div>Tồn kho</div>
                     </div>
                     <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -46,12 +46,12 @@
                                 <i class="icon-settings"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Ngày</a>
-                                <a class="dropdown-item" href="#">Tháng</a>
-                                <a class="dropdown-item" href="#">Năm</a>
+                                <a class="dropdown-item profit" value="day" (click) ="Profit('day')">Ngày</a>
+                                <a class="dropdown-item profit" value="month" (click) ="Profit('month')" >Tháng</a>
+                                <a class="dropdown-item profit" value="year" (click) ="Profit('yearn')" >Năm</a>                            
                             </div>
                         </div>
-                        <div class="text-value">9.823</div>
+                        <div class="text-value">{{logProfit | currency:'VND':true}}</div>
                         <div>Lợi nhuận</div>
                     </div>
                     <div class="chart-wrapper mt-3" style="height:70px;">
@@ -67,13 +67,13 @@
                             <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="icon-settings"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Ngày</a>
-                                <a class="dropdown-item" href="#">Tháng</a>
-                                <a class="dropdown-item" href="#">Năm</a>
+                            <div class="dropdown-menu dropdown-menu-right">                               
+                                <a class="dropdown-item po" value="day" >Ngày</a>
+                                <a class="dropdown-item po" value="month" >Tháng</a>
+                                <a class="dropdown-item po" value="year" >Năm</a>
                             </div>
                         </div>
-                        <div class="text-value">9.823</div>
+                        <div class="text-value">9.800</div>
                         <div>Đơn hàng</div>
                     </div>
                     <div class="chart-wrapper mt-3 mx-3" style="height:70px;">

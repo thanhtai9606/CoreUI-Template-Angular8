@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart } from 'Chart.js';
 import $ from 'jquery';
+import { DashboardService } from 'src/app/services/dashboard.service';
 declare var getStyle,hexToRgba : any;
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,19 @@ declare var getStyle,hexToRgba : any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  logSale : 0
+  logInventory : 0 
+  logCustomer : 0
+  logProfit : 0
 
-  constructor() { }
-
+  constructor(private dashboardService: DashboardService) { }
+  
   ngOnInit() {
+
+   this.Profit('day');
+   this.Sale('day');
+   this.Customer();
+   this.Inventory();
     var cardChart1 = new Chart($('#card-chart1'), {
       type: 'line',
       data: {
@@ -324,5 +334,10 @@ export class DashboardComponent implements OnInit {
     });
     //# sourceMappingURL=main.js.map
   }
+
+  Sale = (value) =>this.dashboardService.Sale(value).subscribe(res=>this.logSale = res as any);
+  Profit = (value) => this.dashboardService.Profit(value).subscribe(res => this.logProfit = res as any);
+  Customer = () => this.dashboardService.Customer().subscribe(res => this.logCustomer = res as any);
+  Inventory = () => this.dashboardService.Inventory().subscribe(res => this.logInventory = res as any);
 
 }
