@@ -29,7 +29,7 @@
     "datatables.net-buttons": "^1.6.1",
     "datatables.net-buttons-dt": "^1.6.1",
     "datatables.net-dt": "^1.10.20",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "ng-select2": "^1.2.2",
     "ngx-toastr": "^11.3.0",
